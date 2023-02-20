@@ -1,9 +1,9 @@
-package tests;
+package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import model.ContactData;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactCreationTests {
   private WebDriver wd;

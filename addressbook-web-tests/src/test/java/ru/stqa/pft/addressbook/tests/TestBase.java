@@ -1,4 +1,4 @@
-package tests;
+package ru.stqa.pft.addressbook.tests;
 
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 import org.testng.annotations.AfterMethod;
