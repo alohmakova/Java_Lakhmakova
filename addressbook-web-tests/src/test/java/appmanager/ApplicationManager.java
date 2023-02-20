@@ -1,19 +1,17 @@
-package ru.stqa.pft.addressbook;
+package appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import model.GroupData;
 
-public class TestBase {
+public class ApplicationManager {
     private WebDriver wd;
     private JavascriptExecutor js;
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() throws Exception {
-      wd = new ChromeDriver();
-      js = (JavascriptExecutor) wd;
-      login("admin", "secret");
+    public void init() {
+        wd = new ChromeDriver();
+        js = (JavascriptExecutor) wd;
+        login("admin", "secret");
     }
 
     private void login(String username, String password) {
@@ -27,15 +25,15 @@ public class TestBase {
       wd.findElement(By.linkText("groups")).click();
     }
 
-    protected void returnToGroupPage() {
+    public void returnToGroupPage() {
       wd.findElement(By.linkText("group page")).click();
     }
 
-    protected void submitGroupCreation() {
+    public void submitGroupCreation() {
       wd.findElement(By.name("submit")).click();
     }
 
-    protected void fillGroupForm(GroupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
       wd.findElement(By.name("group_name")).click();
       wd.findElement(By.name("group_name")).clear();
       wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
@@ -47,18 +45,17 @@ public class TestBase {
       wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
 
-    protected void initGroupCreation() {
+    public void initGroupCreation() {
       wd.findElement(By.name("new")).click();
     }
 
-    protected void gotoGroupPage() {
+    public void gotoGroupPage() {
       wd.get("http://localhost/addressbook/group.php");
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() throws Exception {
-      wd.findElement(By.linkText("Logout")).click();
-      wd.quit();
+    public void stop() {
+        wd.findElement(By.linkText("Logout")).click();
+        wd.quit();
     }
 
     private boolean isElementPresent(By by) {
@@ -79,11 +76,11 @@ public class TestBase {
       }
     }
 
-    protected WebElement DeleteSelectedGroups() {
+    public WebElement DeleteSelectedGroups() {
       return wd.findElement(By.name("delete"));
     }
 
-    protected WebElement selectGroup() {
+    public WebElement selectGroup() {
       return wd.findElement(By.name("selected[]"));
     }
 }
