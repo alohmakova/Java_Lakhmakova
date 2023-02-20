@@ -3,4 +3,9 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11" />
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="addressbook-web-tests.test" options="--add-exports java.security.jgss/sun.security.jgss=ALL-UNNAMED" />
+    </option>
+  </component>
 </project>

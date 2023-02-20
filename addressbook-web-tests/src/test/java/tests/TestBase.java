@@ -1,6 +1,6 @@
 package tests;
 
-import appmanager.ApplicationManager;
+import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
