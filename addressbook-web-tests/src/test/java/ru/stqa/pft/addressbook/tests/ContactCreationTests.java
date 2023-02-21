@@ -1,69 +1,16 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.annotations.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactCreationTests {
-  private WebDriver wd;
-
-  @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
-    wd = new ChromeDriver();
-    login("admin", "secret");
-  }
-
-  private void login(String username, String password) {
-    wd.get("http://localhost/addressbook/index.php");
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(username);
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
-  }
+public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    goToPage("add new", "http://localhost/addressbook/edit.php");
-    fillContactForm(new ContactData("Rasmus", "Bugger", "Ystad", "+48 72017295", "rasmus@gmail.com"));
-    submitContactForm();
-    goToPage("home page", "http://localhost/addressbook/index.php");
+    app.goToPage("add new", "http://localhost/addressbook/edit.php");
+    app.fillContactForm(new ContactData("Лидия", "Иванова", "Самара", "+79057590236", "ivanova@gmail.com"));
+    app.submitContactForm();
+    app.goToPage("home page", "http://localhost/addressbook/index.php");
   }
 
-  private void submitContactForm() {
-    wd.findElement(By.xpath("//input[21]")).click();
-  }
-
-  private void fillContactForm(ContactData contactData) {
-    wd.findElement(By.name("theform")).click();
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
-    wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
-    wd.findElement(By.name("mobile")).click();
-    wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(contactData.getTelMobile());
-    wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
-  }
-
-  private void goToPage(String page_name, String url) {
-    wd.findElement(By.linkText(page_name)).click();
-    wd.get(url);
-  }
-
-  @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
-    wd.findElement(By.linkText("Logout")).click();
-    wd.quit();
-  }
-
-  }
+}
