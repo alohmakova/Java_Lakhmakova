@@ -13,8 +13,12 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("groups"));
     }
 
-    public void goToPage(String url, By locator) {
-      wd.findElement(locator).click();
-      wd.get(url);
+    public void goToAddPage() {
+        click(By.linkText("add new"));
+    }
+
+    public void goToHomePage() {
+        click(By.linkText("home page"));
+
     }
 }
