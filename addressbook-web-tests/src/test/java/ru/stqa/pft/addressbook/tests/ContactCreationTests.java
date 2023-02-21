@@ -7,12 +7,10 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactCreationTests {
   private WebDriver wd;
-  private JavascriptExecutor js;
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     wd = new ChromeDriver();
-    js = (JavascriptExecutor) wd;
     login("admin", "secret");
   }
 
