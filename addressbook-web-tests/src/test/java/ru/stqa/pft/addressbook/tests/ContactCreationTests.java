@@ -7,10 +7,10 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    app.goToPage("add new", "http://localhost/addressbook/edit.php");
-    app.fillContactForm(new ContactData("Лидия", "Иванова", "Самара", "+79057590236", "ivanova@gmail.com"));
-    app.submitContactForm();
-    app.goToPage("home page", "http://localhost/addressbook/index.php");
+    app.getNavigationHelper().goToPage("add new", "http://localhost/addressbook/edit.php");
+    app.getContactHelper().fillContactForm(new ContactData("Лидия", "Иванова", "Самара", "+79057590236", "ivanova@gmail.com"));
+    app.getContactHelper().submitContactForm();
+    app.getNavigationHelper().goToPage("home page", "http://localhost/addressbook/index.php");
   }
 
 }
