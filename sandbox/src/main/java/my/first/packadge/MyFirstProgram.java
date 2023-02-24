@@ -19,19 +19,8 @@ public class MyFirstProgram {
 		Point p2 = new Point(0,5);
 		System.out.println("Расстояние между точками А(" + p1.x + "," + p1.y + ") и В(" + p2.x + "," + p2.y + ") = " + p1.distance(p2));
 
-		Equation e = new Equation(1,5,6);
-		if (e.rootNumber() == 0) {
-
-			System.out.println("Уравнение имеет " + e.rootNumber() +  " решений");
-		} else {
-			if (e.rootNumber() == 1) {
-				System.out.println("Уравнение имеет " + e.rootNumber() +  " решение");
-			} else {
-				System.out.println("Уравнение имеет " + e.rootNumber() +  " решения");
-			}
-		}
-
-
+		Equation e = new Equation(1,2,1);
+		e.typeResult();
 	}
 
 	public static void hello(String somebody) {

@@ -15,19 +15,38 @@ public class Equation {
 
         double d = b * b - 4 * a * c;
 
-        if (d > 0) {
-
-            n = 2;
-        } else {
-            if (d == 0) {
+        if (a != 0) {
+            if (d > 0) {
+                n = 2;
+            } else if (d == 0) {
                 n = 1;
             } else {
                 n = 0;
             }
 
+        } else if (b != 0) {
+          n = 1;
+
+        } else if (c != 0) {
+          n = 0;
+
+        } else {
+          n = -1;
         }
+        
     }
+
     public int rootNumber() {
         return n;
+    }
+
+    public void typeResult() {
+        if (rootNumber() == 0) {
+            System.out.println("Уравнение имеет " + rootNumber() + " решений");
+        } else if (rootNumber() == 1) {
+            System.out.println("Уравнение имеет " + rootNumber() + " решение");
+        } else {
+            System.out.println("Уравнение имеет " + rootNumber() + " решения");
+        }
     }
 }
