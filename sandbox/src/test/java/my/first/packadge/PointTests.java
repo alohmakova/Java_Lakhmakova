@@ -10,7 +10,7 @@ public class PointTests {
 
         Point p1 = new Point(5,5);
         Point p2 = new Point(5,0);
-        Assert.assertEquals(Point.distance(p1, p2), 5);
+        Assert.assertEquals(p1.distance(p2), 5);
     }
     //тест должен пройти, так как ожидаемый результат соответствует актуальному
     @Test
@@ -18,7 +18,7 @@ public class PointTests {
 
         Point p1 = new Point(5,5);
         Point p2 = new Point(5,0);
-        Assert.assertEquals(Point.distance(p1, p2), 5.0);
+        Assert.assertEquals(p1.distance(p2), 5.0);
     }
     //в данном тесте указан неверный второй параметр для функции distance, поэтому тест должен провалиться
     @Test
@@ -26,7 +26,7 @@ public class PointTests {
 
         Point p1 = new Point(5,5);
         Point p2 = new Point(5,0);
-        Assert.assertEquals(Point.distance(p1, p1), 5.0);
+        Assert.assertEquals(p1.distance(p1), 5.0);
     }
 
 }
