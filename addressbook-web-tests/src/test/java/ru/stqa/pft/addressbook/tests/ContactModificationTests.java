@@ -9,7 +9,7 @@ public class ContactModificationTests extends TestBase {
 
         //app.getContactHelper().selectContact().click(); надо ли сначала выбрать контакт?
         app.getContactHelper().initContactModification();
-        app.getContactHelper().fillContactForm(new ContactData("Павел", "Майков", "Клинцы", "+79050357261", "emzil@gmail.com"));
+        app.getContactHelper().fillContactForm(new ContactData("Павел", "Майков", "Клинцы", "+79050357261", "emzil@gmail.com", null), false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().returnToHomePage();
     }

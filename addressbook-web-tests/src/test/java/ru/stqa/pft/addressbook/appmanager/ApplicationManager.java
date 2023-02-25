@@ -8,6 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
+import java.util.concurrent.TimeUnit;
+
 public class ApplicationManager {
 
     WebDriver wd;
@@ -32,7 +34,8 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.IE)) {
             wd = new InternetExplorerDriver();
         }
-
+        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+       //ожидание, чтобы проверить, если какие-то элементы на странице появляются позже, потому что долго загружаются
         js = (JavascriptExecutor) wd;
         wd.get("http://localhost/addressbook/index.php");
 
