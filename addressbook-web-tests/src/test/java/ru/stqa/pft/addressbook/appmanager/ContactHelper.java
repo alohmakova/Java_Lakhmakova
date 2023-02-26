@@ -58,8 +58,8 @@ public class ContactHelper extends HelperBase {
         pressOk();
     }
 
-    public void fillAndSubmitContactForm() {
-        fillContactForm(new ContactData("Лидия", "Иванова", "Самара", "+79057590236", "ivanova@gmail.com", "test"), true);
+    public void fillAndSubmitContactForm (ContactData contact) {
+        fillContactForm(contact, true);
         submitContactForm();
     }
 
