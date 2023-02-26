@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 public class ContactDeletionViaEditTests extends TestBase{
@@ -14,12 +13,10 @@ public class ContactDeletionViaEditTests extends TestBase{
                 app.getGroupHelper().createGroupToAddNewContact(new GroupData("test", null, null));
                 app.getNavigationHelper().goToAddPage();
             }
-            app.getContactHelper().fillContactForm(new ContactData("Лидия", "Иванова", "Самара", "+79057590236", "ivanova@gmail.com", "test"), true);
-            app.getContactHelper().submitContactForm();
+            app.getContactHelper().fillAndSubmitContactForm();
             app.getNavigationHelper().returnToHomePage();
         }
-        app.getContactHelper().initContactModification();
-        app.getContactHelper().DeleteContact();
+        app.getContactHelper().initContactModificationAndDelete ();
     }
 
 }

@@ -52,4 +52,19 @@ public class ContactHelper extends HelperBase {
     public boolean isThereAContactToModify() {
         return isElementPresent(By.xpath("//img[@alt='Edit']"));
     }
+    public void selectContactAndDelete() {
+        selectContact();
+        DeleteContact();
+        pressOk();
+    }
+
+    public void fillAndSubmitContactForm() {
+        fillContactForm(new ContactData("Лидия", "Иванова", "Самара", "+79057590236", "ivanova@gmail.com", "test"), true);
+        submitContactForm();
+    }
+
+    public void initContactModificationAndDelete() {
+        initContactModification();
+        DeleteContact();
+    }
 }
