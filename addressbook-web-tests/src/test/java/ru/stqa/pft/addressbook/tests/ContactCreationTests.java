@@ -8,12 +8,11 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().goToAddPage();
-    if (! app.getGroupHelper().isThereAGroupONAddPage()) {
-      app.getNavigationHelper().gotoGroupPage();
+    app.getNavigationHelper().gotoGroupPage();
+      if (! app.getGroupHelper().isThereAParticularGroup ()) {
       app.getGroupHelper().createGroupToAddNewContact(new GroupData("test", null, null));
-      app.getNavigationHelper().goToAddPage();
-    }
+      }
+    app.getNavigationHelper().goToAddPage();
     app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Лидия", "Карпова", "Самара", "+79057590236", "ivanova@gmail.com", "test"));
     app.getNavigationHelper().returnToHomePage();
   }
