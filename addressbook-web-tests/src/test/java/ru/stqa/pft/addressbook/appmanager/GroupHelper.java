@@ -58,7 +58,7 @@ public class GroupHelper extends HelperBase {
     }
 
     public boolean isThereAParticularGroup() {
-        return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (test7)']"));
+        return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (test)']"));
     }
 
     public void createGroupToAddNewContact(GroupData group) {
@@ -70,4 +70,9 @@ public class GroupHelper extends HelperBase {
     public int getGroupCount() {
        return wd.findElements(By.name ("selected[]")).size ();
     }
+
+    /*public int getAParticularGroupCount() {
+        return wd.findElements(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (test)']")).size ();
+    }*/
+    //сколько групп именно с таким названием на странице Groups
 }

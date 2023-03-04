@@ -13,7 +13,7 @@ public class ContactCreationTests extends TestBase {
       app.getGroupHelper().createGroupToAddNewContact(new GroupData("test", null, null));
       }
     app.getNavigationHelper().goToAddPage();
-    app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Лидия", "Карпова", "Самара", "+79057590236", "ivanova@gmail.com", "test"));
+    app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Анфиса", "Счастливцева", "СПб", "+79059059055", "happy@gmail.com", "test"));
     app.getNavigationHelper().returnToHomePage();
   }
 
