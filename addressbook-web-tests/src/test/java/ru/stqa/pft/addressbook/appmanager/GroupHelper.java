@@ -54,16 +54,20 @@ public class GroupHelper extends HelperBase {
     }
 
     public boolean isThereAGroup() {
-        return isElementPresent(By.name("selected[]"));
+        return isElementPresent(By.name ("selected[]"));
     }
 
     public boolean isThereAParticularGroup() {
-        return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/text()='test'"));
+        return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (test7)']"));
     }
 
     public void createGroupToAddNewContact(GroupData group) {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
+    }
+
+    public int getGroupCount() {
+       return wd.findElements(By.name ("selected[]")).size ();
     }
 }
