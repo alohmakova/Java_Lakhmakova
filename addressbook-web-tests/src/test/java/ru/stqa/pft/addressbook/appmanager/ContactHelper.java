@@ -67,4 +67,10 @@ public class ContactHelper extends HelperBase {
         initContactModification();
         DeleteContact();
     }
+
+    public void initFillSubmitContactForm(ContactData contact) {
+        initContactModification();
+        fillContactForm(contact, false);
+        submitContactModification();
+    }
 }
