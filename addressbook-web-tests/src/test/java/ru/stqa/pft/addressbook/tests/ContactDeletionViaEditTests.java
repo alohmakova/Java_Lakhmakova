@@ -10,10 +10,10 @@ public class ContactDeletionViaEditTests extends TestBase{
         if (! app.getContactHelper().isThereAContactToModify()) {
             app.getNavigationHelper().gotoGroupPage();
             if (! app.getGroupHelper().isThereAParticularGroup ()) {
-                app.getGroupHelper().createGroupToAddNewContact(new GroupData("test", null, null));
+                app.getGroupHelper().createGroupToAddNewContact(new GroupData("my_group", null, null));
             }
             app.getNavigationHelper().goToAddPage();
-            app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Теста", "Тестова", "Самара", "+79057590236", "ivanova@gmail.com", "test"));
+            app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Теста", "Тестова", "Самара", "+79057590236", "ivanova@gmail.com", "my_group"));
             app.getNavigationHelper().returnToHomePage();
         }
         app.getContactHelper().initContactModificationAndDelete ();

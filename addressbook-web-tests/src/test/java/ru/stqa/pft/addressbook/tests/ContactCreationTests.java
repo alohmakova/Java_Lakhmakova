@@ -10,10 +10,10 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
       if (! app.getGroupHelper().isThereAParticularGroup ()) {
-      app.getGroupHelper().createGroupToAddNewContact(new GroupData("test", null, null));
+      app.getGroupHelper().createGroupToAddNewContact(new GroupData("my_group", null, null));
       }
     app.getNavigationHelper().goToAddPage();
-    app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Анфиса", "Счастливцева", "СПб", "+79059059055", "happy@gmail.com", "test"));
+    app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Анфиса", "Счастливцева", "СПб", "+79059059055", "happy@gmail.com", "my_group"));
     app.getNavigationHelper().returnToHomePage();
   }
 

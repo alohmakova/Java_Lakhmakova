@@ -8,13 +8,12 @@ public class ContactDeletionViaSelectTests extends TestBase {
        @Test
     public void testContactDeletion() throws Exception {
         if (! app.getContactHelper().isThereAContact()) {
+              app.getNavigationHelper().gotoGroupPage();
+            if (! app.getGroupHelper().isThereAParticularGroup ()) {
+                app.getGroupHelper().createGroupToAddNewContact(new GroupData("my_group", null, null));
+            }
                app.getNavigationHelper().goToAddPage();
-               if (! app.getGroupHelper().isThereAParticularGroup ()) {
-                   app.getNavigationHelper().gotoGroupPage();
-                   app.getGroupHelper().createGroupToAddNewContact(new GroupData("test", null, null));
-                   app.getNavigationHelper().goToAddPage();
-               }
-               app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Мария", "Тестовая", "Самара", "+79057590236", "ivanova@gmail.com", "test"));
+               app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Мария", "Тестовая", "Пхукет", "+79057590236", "mail@gmail.com", "my_group"));
                app.getNavigationHelper().returnToHomePage();
            }
         app.getContactHelper().selectContactAndDelete ();

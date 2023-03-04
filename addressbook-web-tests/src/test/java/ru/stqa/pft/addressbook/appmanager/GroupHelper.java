@@ -58,7 +58,7 @@ public class GroupHelper extends HelperBase {
     }
 
     public boolean isThereAParticularGroup() {
-        return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (test)']"));
+        return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (my_group)']"));
     }
 
     public void createGroupToAddNewContact(GroupData group) {
