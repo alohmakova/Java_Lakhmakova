@@ -10,7 +10,7 @@ public class ContactDeletionViaSelectTests extends TestBase {
     public void testContactDeletion() throws Exception {
         if (! app.getContactHelper().isThereAContact()) {
               app.getNavigationHelper().gotoGroupPage();
-            if (! app.getGroupHelper().isThereAParticularGroup ()) {
+            if (! app.getGroupHelper().isThereAParticularGroup ("my_group")) {
                 app.getGroupHelper().createGroupToAddNewContact(new GroupData("my_group", null, null));
             }
                app.getNavigationHelper().goToAddPage();

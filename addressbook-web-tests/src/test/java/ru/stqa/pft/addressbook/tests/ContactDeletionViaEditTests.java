@@ -11,7 +11,7 @@ public class ContactDeletionViaEditTests extends TestBase{
 
         if (! app.getContactHelper().isThereAContactToModify()) {
             app.getNavigationHelper().gotoGroupPage();
-            if (! app.getGroupHelper().isThereAParticularGroup ()) {
+            if (! app.getGroupHelper().isThereAParticularGroup ("my_group")) {
                 app.getGroupHelper().createGroupToAddNewContact(new GroupData("my_group", null, null));
             }
             app.getNavigationHelper().goToAddPage();
