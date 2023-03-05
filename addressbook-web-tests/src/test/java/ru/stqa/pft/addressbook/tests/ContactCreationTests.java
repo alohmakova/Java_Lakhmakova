@@ -15,7 +15,7 @@ public class ContactCreationTests extends TestBase {
       app.getGroupHelper().createGroupToAddNewContact(new GroupData("my_group", null, null));
       }
     app.getNavigationHelper().goToAddPage();
-    app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Анфиса", "Счастливцева", "СПб", "+79059059055", "happy@gmail.com", "my_group"));
+    app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Анфиса", "Счастливцева2", "СПб", "+79059059055", "happy@gmail.com", "my_group"));
     app.getNavigationHelper().returnToHomePage();
     int after = app.getContactHelper().getContactCount();
     Assert.assertEquals (after, before + 1);

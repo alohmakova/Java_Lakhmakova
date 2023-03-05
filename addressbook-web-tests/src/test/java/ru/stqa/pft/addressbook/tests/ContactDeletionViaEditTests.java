@@ -19,7 +19,8 @@ public class ContactDeletionViaEditTests extends TestBase{
             app.getNavigationHelper().returnToHomePage();
         }
         int before = app.getContactHelper().getContactCount();
-        app.getContactHelper().initContactModificationAndDelete ();
+        app.getContactHelper().initContactModificationAndDelete (before - 1);
+        app.getNavigationHelper().goHome ();
         int after = app.getContactHelper().getContactCount();
         Assert.assertEquals (after, before - 1);
     }
