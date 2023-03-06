@@ -64,11 +64,11 @@ public class GroupHelper extends HelperBase {
         return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (my_group)']"));
     }
 
-    public void createGroupToAddNewContact(GroupData group) {
-        initGroupCreation();
-        fillGroupForm(group);
-        submitGroupCreation();
-    }
+//    public void createGroupToAddNewContact(GroupData group) {
+//        initGroupCreation();
+//        fillGroupForm(group);
+//        submitGroupCreation();
+//    }
 
     public int getGroupCount() {
        return wd.findElements(By.name ("selected[]")).size ();
