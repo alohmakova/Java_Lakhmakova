@@ -60,7 +60,7 @@ public class GroupHelper extends HelperBase {
         return isElementPresent(By.name ("selected[]"));
     }
 
-    public boolean isThereAParticularGroup(String groupName) {
+    public boolean isThereAParticularGroup(String title) {
         return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (my_group)']"));
     }
 

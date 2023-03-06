@@ -8,10 +8,7 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void testContactModification() throws Exception {
         if (! app.getContactHelper().isThereAContactToModify()) {
-            app.getNavigationHelper().goToAddPage();
-            app.getContactHelper().fillContactForm(new ContactData("Лидия", "Иванова", "Самара", "+79057590236", "ivanova@gmail.com", "[none]"), true);
-            app.getContactHelper().submitContactForm();
-            app.getNavigationHelper().returnToHomePage();
+            app.getContactHelper().fullContactCreationProcess (new ContactData("Лидия", "Иванова", "Самара", "+79057590236", "ivanova@gmail.com", "[none]"), true, app);
         }
         int before = app.getContactHelper().getContactCount();
         app.getContactHelper().initFillSubmitContactForm(new ContactData("Михаил", "Добряков", "Уфа", "+79050357261", "dobro@gmail.com", "[none]"), before - 1);

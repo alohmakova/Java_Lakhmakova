@@ -14,9 +14,7 @@ public class ContactDeletionViaEditTests extends TestBase{
             if (! app.getGroupHelper().isThereAParticularGroup ("my_group")) {
                 app.getGroupHelper().createGroupToAddNewContact(new GroupData("my_group", null, null));
             }
-            app.getNavigationHelper().goToAddPage();
-            app.getContactHelper().fillAndSubmitContactForm(new ContactData ("Теста", "Тестова", "Самара", "+79057590236", "ivanova@gmail.com", "my_group"));
-            app.getNavigationHelper().returnToHomePage();
+            app.getContactHelper().fullContactCreationProcess(new ContactData ("Теста", "Тестова", "Самара", "+79057590236", "ivanova@gmail.com", "my_group"), true, app);
         }
         int before = app.getContactHelper().getContactCount();
         app.getContactHelper().initContactModificationAndDelete (before - 1);
