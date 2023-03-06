@@ -77,6 +77,15 @@ public class GroupHelper extends HelperBase {
     public List<GroupData> getGroupList() {
         List<GroupData> groups = new ArrayList<GroupData>();
         //new ArrayList<GroupData>() - Обязательно нужно указать конкретный класс который реализует интерфейс List
+        List<WebElement> elements = wd.findElements (By.cssSelector ("span.group"));
+                //Найти все элементы которые имеют текст span и класс group
+        for (WebElement element : elements) {
+            String name = element.getText ();
+            GroupData group = new GroupData (name, null, null);
+            groups.add (group);
+
+
+        }
         return groups;
     }
 
