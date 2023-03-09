@@ -20,13 +20,18 @@ public class GroupCreationTests extends TestBase {
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals (after.size (), before.size () + 1);
 
-    int max = 0;
+    /*int max = 0;
     for (GroupData g : after) {
       if (g.getId() > max ) {
         max = g.getId();
       }
-    }
-    group.setId(max);
+    }*/
+    //цикл и корпоратор выполняют одну функцию, поэтому цикл можно убрать
+
+    //Comparator<? super GroupData> byId = (Comparator<GroupData>) (o1, o2) -> Integer.compare (o1.getId (), o2.getId ());
+    // когда мы вставили это в параметр для функции max, строку можно удалить, а затем и саму переменную int max1
+
+    group.setId(after.stream ().max ((o1, o2) -> Integer.compare (o1.getId (), o2.getId ())).get ().getId ());
     before.add (group);
     Assert.assertEquals (new HashSet<Object> (before), new HashSet<Object> (after));
   }
