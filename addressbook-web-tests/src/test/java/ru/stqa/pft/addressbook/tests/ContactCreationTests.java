@@ -20,7 +20,7 @@ public class ContactCreationTests extends TestBase {
       app.getGroupHelper().createGroup(new GroupData("my_group", null, null));
       }
     app.getNavigationHelper().goToAddPage();
-      ContactData contact = new ContactData (before.get(before.size () - 1).getId (),"Василиса", "Мудрая", "СПб", "+79059059055", "happy@gmail.com", "my_group");
+      ContactData contact = new ContactData ("Василиса", "Мудрая", "СПб", "+79059059055", "happy@gmail.com", "my_group");
     app.getContactHelper().fillAndSubmitContactForm(contact);
     app.getNavigationHelper().returnToHomePage();
     //int after = app.getContactHelper().getContactCount();
@@ -29,13 +29,14 @@ public class ContactCreationTests extends TestBase {
     System.out.println (app.getContactHelper ().getContactList());
    Assert.assertEquals (after.size (), before.size () + 1);
 
-      int max = 0;
-      for (ContactData c : after) {
-          if (c.getId() > max ) {
-              max = c.getId();
-          }
-      }
-      contact.setId(max);
+//      int max = 0;
+//      for (ContactData c : after) {
+//          if (c.getId() > max ) {
+//              max = c.getId();
+//          }
+//      }
+//      contact.setId(max);
+      contact.setId(after.stream ().max ((o1, o2) -> Integer.compare (o1.getId (), o2.getId ())).get ().getId ());
       before.add (contact);
       Assert.assertEquals (new HashSet<Object> (before), new HashSet<Object> (after));
   }
