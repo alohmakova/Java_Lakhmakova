@@ -119,7 +119,7 @@ public class ContactHelper extends HelperBase {
             String telMobile = element.findElement(By.xpath("./td[6]")).getText();
             String email = element.findElement(By.xpath("./td[5]")).getText();
             int id = Integer.parseInt (element.findElement(By.tagName ("input")).getAttribute ("value"));
-            ContactData contact = new ContactData (id, firstName, lastName, address, telMobile, email, null);
+            ContactData contact = new ContactData ().withId (id).withFirstName (firstName).withLastName (lastName).withAddress (address).withTelMobile (telMobile).withEmail (email);
             contacts.add (contact);
         }
         return contacts;

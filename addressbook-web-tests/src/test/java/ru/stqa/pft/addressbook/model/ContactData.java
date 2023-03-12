@@ -4,35 +4,47 @@ import java.util.Objects;
 
 public class ContactData {
 
-    private int id;
-    private final String firstName;
-    private final String lastName;
-    private final String address;
-    private final String telMobile;
-    private final String email;
+    private int id = Integer.MAX_VALUE;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String telMobile;
+    private String email;
     private String group;
-
-    public ContactData(int id, String firstName, String lastName, String address, String telMobile, String email, String group) {
+    public ContactData withId(int id) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.telMobile = telMobile;
-        this.email = email;
-        this.group = group;
+        return this;
     }
-    public ContactData(String firstName, String lastName, String address, String telMobile, String email, String group) {
-        this.id = Integer.MAX_VALUE;
+    public ContactData withFirstName(String firstName) {
         this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.telMobile = telMobile;
-        this.email = email;
-        this.group = group;
+        return this;
     }
 
+    public ContactData withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactData withTelMobile(String telMobile) {
+        this.telMobile = telMobile;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
     public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
     public String getFirstName() {
         return firstName;
     }
