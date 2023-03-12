@@ -35,7 +35,7 @@ public class ContactHelper extends HelperBase {
     }
 
 
-    public void initContactModification(int index) {
+    public void initModification(int index) {
         wd.findElements (By.xpath ("//img[@alt='Edit']")).get (index).click ();
     }
 
@@ -47,8 +47,20 @@ public class ContactHelper extends HelperBase {
         wd.findElements (By.name ("selected[]")).get (index).click ();
     }
 
-    public void DeleteContact() {
+    public void delete() {
         click (By.xpath ("//input[@value='Delete']"));
+    }
+
+    public void create(ContactData contact, boolean creation, ApplicationManager app) {
+        fillContactForm (contact, true);
+        submitContactForm ();
+        app.contact ().returnToHomePage();
+    }
+    public void modify(int index, ContactData contact) {
+        initModification (index);
+        fillContactForm (contact, false);
+        submitContactForm ();
+        returnToHomePage();
     }
 
     public boolean isThereAContact() {
@@ -61,22 +73,22 @@ public class ContactHelper extends HelperBase {
 
     public void selectContactAndDelete(int index) {
         selectContact (index);
-        DeleteContact ();
+        delete ();
         pressOk ();
     }
 
-    public void fillAndSubmitContactForm(ContactData contact) {
-        fillContactForm (contact, true);
-        submitContactForm ();
-    }
+//    public void fillAndSubmitContactForm(ContactData contact) {
+//        fillContactForm (contact, true);
+//        submitContactForm ();
+//    }
 
-    public void initContactModificationAndDelete(int index) {
-        initContactModification (index);
-        DeleteContact ();
-    }
+//    public void initContactModificationAndDelete(int index) {
+//        initContactModification (index);
+//        delete ();
+//    }
 
-    public void initFillSubmitContactForm(ContactData contact, int index) {
-        initContactModification (index);
+    public void modify(int index, ContactData contact, boolean creation) {
+        initModification (index);
         fillContactForm (contact, false);
         submitContactModification ();
     }
@@ -86,14 +98,18 @@ public class ContactHelper extends HelperBase {
         return wd.findElements (By.name ("selected[]")).size ();
     }
 
-    public void fullContactCreationProcess(ContactData contact, boolean creation, ApplicationManager app) {
-        app.getNavigationHelper ().goToAddPage ();
+    public void fullCreation(ContactData contact, boolean creation, ApplicationManager app) {
+        app.goTo ().addPage ();
         fillContactForm (contact, creation);
         submitContactForm ();
-        app.getNavigationHelper ().returnToHomePage ();
     }
 
-    public List<ContactData> getContactList() {
+    public void returnToHomePage() {
+        //click(By.xpath ("//a[.='home page']"));
+        click(By.linkText("home"));
+    }
+
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData> ();
         List<WebElement> elements = wd.findElements (By.xpath ("//tr[@name='entry']"));
         for (WebElement element : elements) {
@@ -102,7 +118,7 @@ public class ContactHelper extends HelperBase {
             String address = element.findElement(By.xpath("./td[4]")).getText();
             String telMobile = element.findElement(By.xpath("./td[6]")).getText();
             String email = element.findElement(By.xpath("./td[5]")).getText();
-            int id = Integer.parseInt (element.findElement(By.tagName ("input")).getAttribute ("Value"));
+            int id = Integer.parseInt (element.findElement(By.tagName ("input")).getAttribute ("value"));
             ContactData contact = new ContactData (id, firstName, lastName, address, telMobile, email, null);
             contacts.add (contact);
         }
