@@ -1,12 +1,15 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import ru.stqa.pft.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GroupHelper extends HelperBase {
 
@@ -37,8 +40,12 @@ public class GroupHelper extends HelperBase {
       return wd.findElement(By.name("delete"));
     }
 
-    public void selectGroup(int index) {
+    public void selectGroup(int index) {//Здесь в качестве параметра индекс, то есть порядковый номер элемента
+
         wd.findElements(By.name("selected[]")).get(index).click ();
+    }
+    private void selectGroupById(int id) {//Здесь в качестве параметра идентификатор
+        wd.findElement(By.cssSelector ("input[value='"+ id + "']")).click (); //здесь должен искаться 1 элемент - обрати внимание!
     }
 
     public void initGroupModification() {
@@ -62,11 +69,25 @@ public class GroupHelper extends HelperBase {
         submitGroupModification();
         returnToGroupPage();
     }
+    public void modify(GroupData group) {
+        selectGroupById (group.getId ());
+        initGroupModification();
+        fillGroupForm(group);
+        submitGroupModification();
+        returnToGroupPage();
+    }
     public void delete(int index) {
         selectGroup(index);
         deleteSelectedGroups ().click();
         returnToGroupPage();
     }
+    public void delete(GroupData group) {
+        selectGroupById(group.getId ());//Вместо методы селектор групп которые выбирает по порядковому номеру
+        //Нужно сделать другой метод который выбирает по идентификатору
+        deleteSelectedGroups ().click();
+        returnToGroupPage();
+    }
+
     public boolean isThereAGroup() {
         return isElementPresent(By.name ("selected[]"));
     }
@@ -85,11 +106,19 @@ public class GroupHelper extends HelperBase {
        return wd.findElements(By.name ("selected[]")).size ();
     }
 
-    public List<GroupData> list() {
-        List<GroupData> groups = new ArrayList<GroupData>();
-        //new ArrayList<GroupData>() - Обязательно нужно указать конкретный класс который реализует интерфейс List
+    public List<GroupData> list() { //список
+        List<GroupData> groups = new ArrayList<GroupData> ();
         List<WebElement> elements = wd.findElements (By.cssSelector ("span.group"));
-                //Найти все элементы которые имеют текст span и класс group
+        for (WebElement element : elements) {
+            String name = element.getText ();
+            int id = Integer.parseInt (element.findElement (By.tagName ("input")).getAttribute ("value"));
+            groups.add (new GroupData ().withId (id).withName (name));
+        }
+        return groups;
+    }
+    public Groups all() { //множество
+        Groups groups = new Groups ();
+        List<WebElement> elements = wd.findElements (By.cssSelector ("span.group"));
         for (WebElement element : elements) {
             String name = element.getText ();
             int id = Integer.parseInt (element.findElement (By.tagName ("input")).getAttribute ("value"));
