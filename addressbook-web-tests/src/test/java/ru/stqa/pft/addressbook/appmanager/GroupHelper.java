@@ -7,9 +7,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupHelper extends HelperBase {
 
@@ -60,6 +58,7 @@ public class GroupHelper extends HelperBase {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
+        groupCache = null;
         returnToGroupPage();
     }
     public void modify(int index, GroupData group) {
@@ -74,6 +73,7 @@ public class GroupHelper extends HelperBase {
         initGroupModification();
         fillGroupForm(group);
         submitGroupModification();
+        groupCache = null;
         returnToGroupPage();
     }
     public void delete(int index) {
@@ -82,9 +82,9 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
     public void delete(GroupData group) {
-        selectGroupById(group.getId ());//Вместо методы селектор групп которые выбирает по порядковому номеру
-        //Нужно сделать другой метод который выбирает по идентификатору
+        selectGroupById(group.getId ());
         deleteSelectedGroups ().click();
+        groupCache = null;
         returnToGroupPage();
     }
 
@@ -95,12 +95,6 @@ public class GroupHelper extends HelperBase {
     public boolean isThereAParticularGroup(String title) {
         return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (my_group)']"));
     }
-
-//    public void createGroupToAddNewContact(GroupData group) {
-//        initGroupCreation();
-//        fillGroupForm(group);
-//        submitGroupCreation();
-//    }
 
     public int getGroupCount() {
        return wd.findElements(By.name ("selected[]")).size ();
@@ -116,15 +110,19 @@ public class GroupHelper extends HelperBase {
         }
         return groups;
     }
+    private Groups groupCache = null;
     public Groups all() { //множество
-        Groups groups = new Groups ();
+        if (groupCache != null){
+            return new Groups (groupCache);
+        }
+        groupCache = new Groups ();
         List<WebElement> elements = wd.findElements (By.cssSelector ("span.group"));
         for (WebElement element : elements) {
             String name = element.getText ();
             int id = Integer.parseInt (element.findElement (By.tagName ("input")).getAttribute ("value"));
-            groups.add (new GroupData ().withId (id).withName (name));
+            groupCache.add (new GroupData ().withId (id).withName (name));
         }
-        return groups;
+        return new Groups (groupCache);
     }
 
     /*public int getAParticularGroupCount() {

@@ -63,34 +63,52 @@ public class ContactHelper extends HelperBase {
         return wd.findElement(By.xpath("//input[@value='Delete']"));
     }
 
+    public void fullCreation(ContactData contact, boolean creation, ApplicationManager app) {
+        app.goTo ().addPage ();
+        fillContactForm (contact, creation);
+        contactCache = null;
+        submitContactForm ();
+    }
     public void create(ContactData contact, boolean creation, ApplicationManager app) {
         fillContactForm (contact, true);
         submitContactForm ();
-        app.contact ().returnToHomePage();
-    }
-    public void modify(int index, ContactData contact) {
-        initModification (index);
-        fillContactForm (contact, false);
-        submitContactForm ();
+        contactCache = null;
         returnToHomePage();
     }
-//    public void delete(int index) { //это старый вариат, где удаление без клика, так как клик в методе удалить контакт был
-//        selectContact (index);
-//        deleteContact ();
-//        pressOk ();
-//    }
+    public void modify(ContactData contact, boolean creation) {//это для редактирования контакта по id
+        initModificationById (contact.getId ());
+        fillContactForm (contact, false);
+        submitContactModification ();
+        contactCache = null;
+    }
     public void delete(ContactData contact) {
         selectContactById (contact.getId ());
         deleteContact ().click();
+        contactCache = null;
         pressOk ();
     }
+    public void modifyAndDelete(ContactData contact) {//это для удаления контакта через редактирование по id
+        initModificationById (contact.getId ());
+        deleteContact ().click();
+        contactCache = null;
+    }
+    public void returnToHomePage() {
+        if (isElementPresent(By.id("maintable"))) {
+            return;
+        }
+        click(By.linkText("home page"));
 
+    }
     public void delete(int index) {
         selectContact (index);
         deleteContact ().click();
         pressOk ();
     }
-
+    public void modify(int index, ContactData contact, boolean creation) {//это для редактирования контакта по порядковому номеру, а не по id
+        initModification (index);
+        fillContactForm (contact, false);
+        submitContactModification ();
+    }
     public boolean isThereAContact() {
         return isElementPresent (By.name ("selected[]"));
     }
@@ -99,54 +117,9 @@ public class ContactHelper extends HelperBase {
         return isElementPresent (By.xpath ("//img[@alt='Edit']"));
     }
 
-    public void selectContactAndDelete(int index) {
-        selectContact (index);
-        deleteContact ();
-        pressOk ();
-    }
-
-//    public void fillAndSubmitContactForm(ContactData contact) {
-//        fillContactForm (contact, true);
-//        submitContactForm ();
-//    }
-
-    public void modify(int index, ContactData contact, boolean creation) {//это для редактирования контакта по порядковому номеру, а не по id
-        initModification (index);
-        fillContactForm (contact, false);
-        submitContactModification ();
-    }
-    public void modify(ContactData contact, boolean creation) {//это для редактирования контакта по id
-        initModificationById (contact.getId ());
-        fillContactForm (contact, false);
-        submitContactModification ();
-    }
-    public void modifyAndDelete(ContactData contact) {//это для удаления контакта через редактирование по id
-        initModificationById (contact.getId ());
-        deleteContact ().click();
-    }
-
     public int getContactCount() {
 
         return wd.findElements (By.name ("selected[]")).size ();
-    }
-
-    public void fullCreation(ContactData contact, boolean creation, ApplicationManager app) {
-        app.goTo ().addPage ();
-        fillContactForm (contact, creation);
-        submitContactForm ();
-    }
-
-//    public void returnToHomePage() {
-//        //click(By.xpath ("//a[.='home page']"));
-//        click(By.linkText("home"));
-//    }
-
-    public void returnToHomePage() {
-        if (isElementPresent(By.id("maintable"))) {
-            return;
-        }
-        click(By.linkText("home page"));
-
     }
 
     public List<ContactData> list() {
@@ -165,9 +138,12 @@ public class ContactHelper extends HelperBase {
         return contacts;
 
     }
-
+    private Contacts contactCache = null;
     public Contacts all() {
-        Contacts contacts = new Contacts ();
+        if (contactCache != null){
+            return new Contacts (contactCache);
+        }
+        contactCache = new Contacts ();
         List<WebElement> elements = wd.findElements (By.xpath ("//tr[@name='entry']"));
         for (WebElement element : elements) {
             String lastName = element.findElement(By.xpath("./td[2]")).getText();
@@ -176,9 +152,9 @@ public class ContactHelper extends HelperBase {
             String telMobile = element.findElement(By.xpath("./td[6]")).getText();
             String email = element.findElement(By.xpath("./td[5]")).getText();
             int id = Integer.parseInt (element.findElement(By.tagName ("input")).getAttribute ("value"));
-            contacts.add (new ContactData ().withId (id).withFirstName (firstName).withLastName (lastName).withAddress (address).withTelMobile (telMobile).withEmail (email));
+            contactCache.add (new ContactData ().withId (id).withFirstName (firstName).withLastName (lastName).withAddress (address).withTelMobile (telMobile).withEmail (email));
         }
-        return contacts;
+        return new Contacts (contactCache);
 
     }
 
