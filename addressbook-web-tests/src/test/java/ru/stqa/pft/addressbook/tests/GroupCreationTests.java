@@ -16,8 +16,9 @@ public class GroupCreationTests extends TestBase {
     Groups before = app.group ().all ();
     GroupData group = new GroupData ().withName ("test");
     app.group ().create (group);
+    assertThat (app.group ().count (), equalTo (before.size () + 1));
     Groups after = app.group ().all ();
-    assertThat (after.size (), equalTo (before.size () + 1));
+    //assertThat (after.size (), equalTo (before.size () + 1));
     //теперь эту проверку можно поставить как перед, так и после assertThat
     //так кака метод withAdded делает копию - объект before остаётся неизменным - в сравнении участвует его копия
     //удобно, что можно не заботиться о порядке выполнения проверок
@@ -25,6 +26,19 @@ public class GroupCreationTests extends TestBase {
 
     assertThat (after, equalTo (
             before.withAdded(group.withId (after.stream().mapToInt ((g) -> g.getId ()).max().getAsInt()))));
+  }
+  @Test
+  public void testBadGroupCreation() throws Exception {//создать группу с апострофом в названии test' нельзя
+    app.goTo ().groupPage ();
+    Groups before = app.group ().all ();
+    GroupData group = new GroupData ().withName ("test'");
+    app.group ().create (group);
+    assertThat (app.group ().count (), equalTo (before.size ()));
+    Groups after = app.group ().all ();
+    //assertThat (after.size (), equalTo (before.size ()));
+
+
+    assertThat (after, equalTo (before));
   }
 
 }
