@@ -153,21 +153,14 @@ public class ContactHelper extends HelperBase {
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName ("input")).getAttribute ("value"));
             String lastName = cells.get(1).getText();
             String firstName = cells.get (2).getText();
-            //String[] phones = cells.get (5).getText ().split ("\n");
-            String[] phones = cells.get (5).getText().split ("\n");
+            String allPhones = cells.get (5).getText ();
+            //String[] phones = cells.get (5).getText().split ("\n");
             //String telMobile = row.findElement(By.xpath("./td[6]")).getText();
             String email = cells.get (4).getText();
             String address = cells.get (3).getText();
             //int id = Integer.parseInt (element.findElement(By.tagName ("input")).getAttribute ("value"));
-            contactCache.add (new ContactData ()
-                    .withId (id)
-                    .withFirstName (firstName)
-                    .withLastName (lastName)
-                    .withAddress (address)
-                    .withTelHome(phones[0])
-                    .withTelMobile(phones[1])
-                    .withTelWork(phones[2])
-                    .withEmail(email));
+            contactCache.add (new ContactData ().withId (id).withFirstName (firstName).withLastName (lastName)
+                    .withAddress (address).withAllPhones(allPhones).withEmail(email));
         }
         return new Contacts (contactCache);
 
