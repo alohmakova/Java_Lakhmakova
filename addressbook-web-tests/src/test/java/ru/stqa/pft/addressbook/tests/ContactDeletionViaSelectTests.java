@@ -21,8 +21,8 @@ public class ContactDeletionViaSelectTests extends TestBase {
                 app.group ().create (new GroupData ().withName ("my_group"));
             }
             app.contact ().fullCreation (new ContactData ()
-                            .withFirstName ("Теста").withLastName ("Тестовая").withAddress ("Ужгород")
-                            .withTelMobile ("+79057590236").withEmail ("email@gmail.com").withGroup ("my_group"),
+                            .withFirstName ("Теста").withLastName ("Тестовая").withAddress ("Ужгород").withTelHome ("786875")
+                            .withTelMobile ("+9809").withTelWork ("2222").withEmail ("email@gmail.com").withGroup ("my_group"),
                     true, app);
         }
     }

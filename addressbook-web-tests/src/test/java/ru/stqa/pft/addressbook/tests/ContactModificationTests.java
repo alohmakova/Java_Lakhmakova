@@ -15,8 +15,8 @@ public class ContactModificationTests extends TestBase {
     public void ensurePreconditions() {
         if (!app.contact ().isThereAContactToModify ()) {
             app.contact ().fullCreation (new ContactData ()
-                            .withFirstName ("Лидия").withLastName ("Иванова").withAddress ("Самара")
-                            .withTelMobile ("+7856300000").withEmail ("ivanova@gmail.com").withGroup ("[none]"),
+                            .withFirstName ("Лидия").withLastName ("Иванова").withAddress ("Самара").withTelHome ("786875")
+                            .withTelMobile("+9809").withTelWork ("2222").withEmail ("ivanova@gmail.com").withGroup ("[none]"),
                     true, app);
         }
     }

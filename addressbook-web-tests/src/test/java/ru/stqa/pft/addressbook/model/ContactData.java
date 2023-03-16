@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class ContactData {
 
-    private int id = Integer.MAX_VALUE;
+    private int id; //= Integer.MAX_VALUE;
     private String firstName;
     private String lastName;
     private String address;
