@@ -144,14 +144,17 @@ public class ContactHelper extends HelperBase {
             return new Contacts (contactCache);
         }
         contactCache = new Contacts ();
-        List<WebElement> elements = wd.findElements (By.xpath ("//tr[@name='entry']"));
-        for (WebElement element : elements) {
-            String lastName = element.findElement(By.xpath("./td[2]")).getText();
-            String firstName = element.findElement(By.xpath("./td[3]")).getText();
-            String address = element.findElement(By.xpath("./td[4]")).getText();
-            String telMobile = element.findElement(By.xpath("./td[6]")).getText();
-            String email = element.findElement(By.xpath("./td[5]")).getText();
-            int id = Integer.parseInt (element.findElement(By.tagName ("input")).getAttribute ("value"));
+        List<WebElement> rows = wd.findElements (By.name ("entry"));
+        //List<WebElement> elements = wd.findElements (By.xpath ("//tr[@name='entry']"));
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements (By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName ("input")).getAttribute ("value"));
+            String lastName = cells.get(1).getText();
+            String firstName = cells.get (2).getText();
+            String address = row.findElement(By.xpath("./td[4]")).getText();
+            String telMobile = row.findElement(By.xpath("./td[6]")).getText();
+            String email = row.findElement(By.xpath("./td[5]")).getText();
+            //int id = Integer.parseInt (element.findElement(By.tagName ("input")).getAttribute ("value"));
             contactCache.add (new ContactData ().withId (id).withFirstName (firstName).withLastName (lastName).withAddress (address).withTelMobile (telMobile).withEmail (email));
         }
         return new Contacts (contactCache);
