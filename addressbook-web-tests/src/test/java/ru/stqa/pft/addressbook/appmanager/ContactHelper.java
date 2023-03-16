@@ -153,7 +153,7 @@ public class ContactHelper extends HelperBase {
             String firstName = cells.get (2).getText();
             //String[] phones = cells.get (5).getText ().split ("\n");
             String allPhones = cells.get (5).getText();
-            allPhones.split ("\n");
+            String[] phones = allPhones.split ("\n");
             //String telMobile = row.findElement(By.xpath("./td[6]")).getText();
             String email = cells.get (4).getText();
             String address = cells.get (3).getText();
