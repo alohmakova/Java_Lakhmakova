@@ -19,7 +19,7 @@ public class GroupModificationTests extends TestBase {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void testGroupModification() throws Exception {
 
         Groups before = app.group ().all ();

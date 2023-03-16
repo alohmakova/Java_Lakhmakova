@@ -9,6 +9,9 @@ public class ContactData {
     private String lastName;
     private String address;
     private String telMobile;
+    private String telHome;
+    private String telWork;
+
     private String email;
     private String group;
     public ContactData withId(int id) {
@@ -32,6 +35,14 @@ public class ContactData {
 
     public ContactData withTelMobile(String telMobile) {
         this.telMobile = telMobile;
+        return this;
+    }
+    public ContactData withTelHome(String telHome) {
+        this.telHome = telHome;
+        return this;
+    }
+    public ContactData withTelWork(String telWork) {
+        this.telWork = telWork;
         return this;
     }
 
@@ -60,6 +71,27 @@ public class ContactData {
     public String getTelMobile() {
         return telMobile;
     }
+    public String getTelHome() {
+        return telHome;
+    }
+    public String getTelWork() {
+        return telWork;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", telMobile='" + telMobile + '\'' +
+                ", telHome='" + telHome + '\'' +
+                ", telWork='" + telWork + '\'' +
+                ", email='" + email + '\'' +
+                ", group='" + group + '\'' +
+                '}';
+    }
 
     public String getEmail() {
         return email;
@@ -87,16 +119,5 @@ public class ContactData {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", telMobile='" + telMobile + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
 
 }

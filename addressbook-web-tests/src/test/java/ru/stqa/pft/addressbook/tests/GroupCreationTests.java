@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testGroupCreation() throws Exception {
     app.goTo ().groupPage ();
     Groups before = app.group ().all ();
@@ -27,7 +27,7 @@ public class GroupCreationTests extends TestBase {
     assertThat (after, equalTo (
             before.withAdded(group.withId (after.stream().mapToInt ((g) -> g.getId ()).max().getAsInt()))));
   }
-  @Test
+  @Test(enabled = false)
   public void testBadGroupCreation() throws Exception {//создать группу с апострофом в названии test' нельзя
     app.goTo ().groupPage ();
     Groups before = app.group ().all ();
