@@ -22,7 +22,7 @@ public class ContactDeletionViaSelectTests extends TestBase {
             }
             app.contact ().fullCreation (new ContactData ()
                             .withFirstName ("Теста").withLastName ("Тестовая").withAddress ("Ужгород").withTelHome ("786875")
-                            .withTelMobile ("+9809").withTelWork ("2222").withEmail ("email@gmail.com").withGroup ("my_group"),
+                            .withTelMobile ("+989").withTelWork ("2222").withEmail ("email@gmail.com").withGroup ("my_group"),
                     true, app);
         }
     }
