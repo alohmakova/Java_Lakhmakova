@@ -9,4 +9,5 @@ dependencies {
     implementation 'org.testng:testng:6.9.10'
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation 'org.hamcrest:hamcrest-junit:2.0.0.0'
+    implementation 'com.beust:jcommander:1.48'
 }
