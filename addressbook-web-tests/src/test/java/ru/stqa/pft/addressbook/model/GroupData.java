@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class GroupData {
 
-    private int id = Integer.MAX_VALUE;
+    private int id; //= Integer.MAX_VALUE;
     private String name;
     private String header;
     private String footer;
@@ -47,8 +47,10 @@ public class GroupData {
     @Override
     public String toString() {
         return "GroupData{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
+                ", header='" + header + '\'' +
+                ", footer='" + footer + '\'' +
                 '}';
     }
 
