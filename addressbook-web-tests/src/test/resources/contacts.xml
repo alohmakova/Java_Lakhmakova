@@ -1,0 +1,35 @@
+<list>
+  <contact>
+    <firstName>FirstName 0</firstName>
+    <lastName>LastName 0</lastName>
+    <address>Address 0</address>
+    <telMobile>2220222</telMobile>
+    <telHome>1110111</telHome>
+    <telWork>3330333</telWork>
+    <email>0email@mail.com</email>
+    <email2>0email2@mail.com</email2>
+    <email3>0email3@mail.com</email3>
+  </contact>
+  <contact>
+    <firstName>FirstName 1</firstName>
+    <lastName>LastName 1</lastName>
+    <address>Address 1</address>
+    <telMobile>2221222</telMobile>
+    <telHome>1111111</telHome>
+    <telWork>3331333</telWork>
+    <email>1email@mail.com</email>
+    <email2>1email2@mail.com</email2>
+    <email3>1email3@mail.com</email3>
+  </contact>
+  <contact>
+    <firstName>FirstName 2</firstName>
+    <lastName>LastName 2</lastName>
+    <address>Address 2</address>
+    <telMobile>2222222</telMobile>
+    <telHome>1112111</telHome>
+    <telWork>3332333</telWork>
+    <email>2email@mail.com</email>
+    <email2>2email2@mail.com</email2>
+    <email3>2email3@mail.com</email3>
+  </contact>
+</list>
