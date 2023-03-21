@@ -70,20 +70,20 @@ public class ContactDataGenerator {
         System.out.println (new File (".").getAbsolutePath ());
         Writer writer = new FileWriter (file);
         for (ContactData contact : contacts){
-            writer.write(String.format ("%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
+            writer.write(String.format ("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
                     contact.getLastName (), contact.getFirstName (), contact.getAddress (),
                     contact.getEmail (), contact.getEmail2 (), contact.getEmail3 (),
-                    contact.getTelHome (), contact.getTelMobile (), contact.getTelWork ()));
+                    contact.getTelHome (), contact.getTelMobile (), contact.getTelWork (), contact.getGroup ()));
         }
         writer.close ();
     }
-
+    File photo = new File ("src/test/resources/2023-02-27_12-49-38.png");
     private List<ContactData> generateContacts(int count) {
         List<ContactData> contacts = new ArrayList<ContactData> ();
         for (int i = 0; i < count; i++){
             contacts.add (new ContactData().withLastName (String.format ("LastName %s", i)).withFirstName (String.format ("FirstName %s", i)).withAddress (String.format ("Address %s", i))
                     .withEmail (String.format (i + "email@mail.com")).withEmail2 (String.format (i + "email2@mail.com")).withEmail3 (String.format (i + "email3@mail.com"))
-                    .withTelHome (String.format ("111" + i + "111")).withTelMobile (String.format ("222" + i + "222")).withTelWork (String.format ("333" + i + "333")));
+                    .withTelHome (String.format ("111" + i + "111")).withTelMobile (String.format ("222" + i + "222")).withTelWork (String.format ("333" + i + "333")).withPhoto (photo).withGroup (String.format ("group")));
         }
         return contacts;
     }

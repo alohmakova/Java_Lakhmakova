@@ -1,3 +1,3 @@
-LastName 0;FirstName 0;Address 0;email0@mail.com;email20@mail.com;email30@mail.com;1110;2220;3330
-LastName 1;FirstName 1;Address 1;email1@mail.com;email21@mail.com;email31@mail.com;1111;2221;3331
-LastName 2;FirstName 2;Address 2;email2@mail.com;email22@mail.com;email32@mail.com;1112;2222;3332
+LastName 0;FirstName 0;Address 0;0email@mail.com;0email2@mail.com;0email3@mail.com;1110111;2220222;3330333;group
+LastName 1;FirstName 1;Address 1;1email@mail.com;1email2@mail.com;1email3@mail.com;1111111;2221222;3331333;group
+LastName 2;FirstName 2;Address 2;2email@mail.com;2email2@mail.com;2email3@mail.com;1112111;2222222;3332333;group

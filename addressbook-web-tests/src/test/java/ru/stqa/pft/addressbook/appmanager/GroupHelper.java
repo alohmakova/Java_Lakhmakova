@@ -93,7 +93,7 @@ public class GroupHelper extends HelperBase {
     }
 
     public boolean isThereAParticularGroup(String title) {
-        return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (my_group)']"));
+        return isElementPresent(By.xpath("//*[@id=\"content\"]/form/span/input[@title='Select (group)']"));
     }
 
     public int count() {

@@ -34,6 +34,7 @@ public class ContactData {
     private String email3;
 
     private File photo;
+    @Expose
     private String group;
 
     public ContactData withId(int id) {
