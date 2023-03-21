@@ -1,0 +1,201 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 268435456 bytes for Failed to commit area from 0x0000000700800000 to 0x0000000710800000 of length 268435456.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (./src/hotspot/os/windows/os_windows.cpp:3386), pid=34336, tid=8656
+#
+# JRE version:  (11.0.18+10) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.18+10, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:C:\Users\Robin\AppData\Local\JetBrains\Toolbox\apps\IDEA-C\ch-0\223.8836.41\lib\idea_rt.jar=53007:C:\Users\Robin\AppData\Local\JetBrains\Toolbox\apps\IDEA-C\ch-0\223.8836.41\bin -Dfile.encoding=UTF-8 com.intellij.rt.testng.RemoteTestNGStarter -usedefaultlisteners false -socket53006 @w@C:\Users\Robin\AppData\Local\Temp\idea_working_dirs_testng.tmp -temp C:\Users\Robin\AppData\Local\Temp\idea_testng.tmp
+
+Host: Genuine Intel(R) CPU  @ 2.30GHz, 40 cores, 15G,  Windows 11 , 64 bit Build 22621 (10.0.22621.1344)
+Time: Tue Mar 21 01:02:45 2023 W. Europe Standard Time elapsed time: 0.035118 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001ee0aec8000):  JavaThread "Unknown thread" [_thread_in_vm, id=8656, stack(0x0000004b10200000,0x0000004b10300000)]
+
+Stack: [0x0000004b10200000,0x0000004b10300000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x64f2aa]
+V  [jvm.dll+0x7e2769]
+V  [jvm.dll+0x7e3e69]
+V  [jvm.dll+0x7e4553]
+V  [jvm.dll+0x26af95]
+V  [jvm.dll+0x64c4c9]
+V  [jvm.dll+0x640a25]
+V  [jvm.dll+0x326c1c]
+V  [jvm.dll+0x326aa2]
+V  [jvm.dll+0x32b696]
+V  [jvm.dll+0x3738c2]
+V  [jvm.dll+0x373310]
+V  [jvm.dll+0x3023c8]
+V  [jvm.dll+0x3034c5]
+V  [jvm.dll+0x7bb917]
+V  [jvm.dll+0x7bd0df]
+V  [jvm.dll+0x380c99]
+V  [jvm.dll+0x79dc7f]
+V  [jvm.dll+0x3f1dc7]
+V  [jvm.dll+0x3f42b1]
+C  [jli.dll+0x52c7]
+C  [ucrtbase.dll+0x29363]
+C  [KERNEL32.DLL+0x126bd]
+C  [ntdll.dll+0x5a9f8]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000001ee0ac6d030, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x000001ee0aee2800 GCTaskThread "GC Thread#0" [stack: 0x0000004b10300000,0x0000004b10400000] [id=5868]
+  0x000001ee0af43800 ConcurrentGCThread "G1 Main Marker" [stack: 0x0000004b10400000,0x0000004b10500000] [id=24312]
+  0x000001ee0af45000 ConcurrentGCThread "G1 Conc#0" [stack: 0x0000004b10500000,0x0000004b10600000] [id=29792]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffddbd72de7]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000001ee0aec4bf0] Heap_lock - owner thread: 0x000001ee0aec8000
+
+Heap address: 0x0000000700800000, size: 4088 MB, Compressed Oops mode: Non-zero based: 0x0000000700800000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (1 events):
+Event: 0.023 Loaded shared library C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\zip.dll
+
+
+Dynamic libraries:
+0x00007ff6514f0000 - 0x00007ff6514fd000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\java.exe
+0x00007ffe53310000 - 0x00007ffe53524000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffe516d0000 - 0x00007ffe51793000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffe50940000 - 0x00007ffe50cdc000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffe50f90000 - 0x00007ffe510a1000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffddc6f0000 - 0x00007ffddc707000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\jli.dll
+0x00007ffddc6d0000 - 0x00007ffddc6e9000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\VCRUNTIME140.dll
+0x00007ffe51f50000 - 0x00007ffe520fd000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffe50ea0000 - 0x00007ffe50ec6000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffe38d80000 - 0x00007ffe3900e000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.608_none_a9444ca7c10bb01d\COMCTL32.dll
+0x00007ffe515f0000 - 0x00007ffe51619000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffe53100000 - 0x00007ffe531a7000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffe50d80000 - 0x00007ffe50e93000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffe50ce0000 - 0x00007ffe50d7a000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffe51620000 - 0x00007ffe51651000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffddc6c0000 - 0x00007ffddc6cc000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\vcruntime140_1.dll
+0x00007ffddc620000 - 0x00007ffddc6b1000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\msvcp140.dll
+0x00007ffddba60000 - 0x00007ffddc61a000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\server\jvm.dll
+0x00007ffe521d0000 - 0x00007ffe5227e000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffe51120000 - 0x00007ffe511c4000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffe517b0000 - 0x00007ffe518c5000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffe51530000 - 0x00007ffe51538000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffe34e30000 - 0x00007ffe34e39000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffe478f0000 - 0x00007ffe47924000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffe52ef0000 - 0x00007ffe52f61000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffe4a090000 - 0x00007ffe4a09a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffe4f7a0000 - 0x00007ffe4f7b8000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffddba50000 - 0x00007ffddba60000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\verify.dll
+0x00007ffe3e870000 - 0x00007ffe3ea9e000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffe51ad0000 - 0x00007ffe51e59000 	C:\WINDOWS\System32\combase.dll
+0x00007ffe519d0000 - 0x00007ffe51aa7000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffe3f730000 - 0x00007ffe3f762000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffe50750000 - 0x00007ffe507cb000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffddba20000 - 0x00007ffddba48000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\java.dll
+0x00007ffddba10000 - 0x00007ffddba1a000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\jimage.dll
+0x00007ffe4d130000 - 0x00007ffe4d13e000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\instrument.dll
+0x00007ffddb9f0000 - 0x00007ffddba08000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.608_none_a9444ca7c10bb01d;C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin\server
+
+VM Arguments:
+jvm_args: -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:C:\Users\Robin\AppData\Local\JetBrains\Toolbox\apps\IDEA-C\ch-0\223.8836.41\lib\idea_rt.jar=53007:C:\Users\Robin\AppData\Local\JetBrains\Toolbox\apps\IDEA-C\ch-0\223.8836.41\bin -Dfile.encoding=UTF-8 
+java_command: com.intellij.rt.testng.RemoteTestNGStarter -usedefaultlisteners false -socket53006 @w@C:\Users\Robin\AppData\Local\Temp\idea_working_dirs_testng.tmp -temp C:\Users\Robin\AppData\Local\Temp\idea_testng.tmp
+java_class_path (initial): C:\Users\Robin\AppData\Local\JetBrains\Toolbox\apps\IDEA-C\ch-0\223.8836.41\lib\idea_rt.jar;C:\Users\Robin\AppData\Local\JetBrains\Toolbox\apps\IDEA-C\ch-0\223.8836.41\plugins\testng\lib\testng-rt.jar;C:\Users\Robin\Documents\GitHub\Java_Lakhmakova\addressbook-web-tests\out\test\classes;C:\Users\Robin\Documents\GitHub\Java_Lakhmakova\addressbook-web-tests\out\test\resources;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\org.testng\testng\6.9.10\6feb3e964aeb7097aff30c372aac3ec0f8d87ede\testng-6.9.10.jar;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-java\3.141.59\e8e20b741299cb8ffedbd2925a3ab69d08b41063\selenium-java-3.141.59.jar;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-junit\2.0.0.0\221cf2b5aabedf8cd76534996caa21b283ea5d0\hamcrest-junit-2.0.0.0.jar;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\com.beust\jcommander\1.48\bfcb96281ea3b59d626704f74bc6d625ff51cbce\jcommander-1.48.jar;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\com.thoughtworks.xstream\xstream\1.4.8\520d90f30f36a0d6ba2dc929d980831631ad6a92\xstream-1.4.8.jar;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\org.beanshell\bsh\2.0b4\a05f0a0feefa8d8467ac80e16e7de071489f0d9c\bsh-2.0b4.jar;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-chrome-driver\3.141.59\67137314736c6a2f39a8aa59a562e9616ae5f77e\selenium-chrome-driver-3.141.59.jar;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-edge-driver\3.141.59\fc09c66f2d0b33b0816d770761ad1d599ef0df29\selenium-edge-driver-3.141.59.jar;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-firefox-driver\3.141.59\a99f2fe2a42747ed9809d4f62f51a9e1b336dde8\selenium-firefox-driver-3.141.59.jar;C:\Users\Robin\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-ie-driver\3.141.59\677b9b414a3a9bb2aeea89042a7b326edeb13a82\selenium-ie-driver-3.141.59.jar;C:\Use
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 15                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 7                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 28                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 268435456                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4286578688                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 8182140                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 121738050                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 121738050                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\
+PATH=C:\Program Files\Eclipse Adoptium\jdk-11.0.18.10-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-17.0.6.10-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\Robin\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\Robin\AppData\Local\Programs\Python\Python311\;C:\Users\Robin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Eclipse Adoptium\jdk-17.0.6.10-hotspot\\bin;C:\Users\Robin\AppData\Local\GitHubDesktop\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.3.2\bin;C:\Users\Robin\AppData\Local\JetBrains\Toolbox\scripts
+USERNAME=AL
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 62 Stepping 2, GenuineIntel
+TMP=C:\Users\Robin\AppData\Local\Temp
+TEMP=C:\Users\Robin\AppData\Local\Temp
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 11 , 64 bit Build 22621 (10.0.22621.1344)
+OS uptime: 0 days 12:14 hours
+Hyper-V role detected
+
+CPU:total 40 (initial active 40) (10 cores per cpu, 2 threads per core) family 6 model 62 stepping 2 microcode 0x20d, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, clmul, erms, ht, tsc, tscinvbit
+
+Memory: 4k page, system-wide physical 16349M (4934M free)
+TotalPageFile size 21959M (AvailPageFile size 82M)
+current process WorkingSet (physical memory assigned to process): 11M, peak: 11M
+current process commit charge ("private bytes"): 103M, peak: 359M
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.18+10) for windows-amd64 JRE (11.0.18+10), built on Jan 18 2023 04:27:27 by "" with MS VC++ 16.7 (VS2019)
+
+END.
