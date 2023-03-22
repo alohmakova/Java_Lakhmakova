@@ -17,12 +17,12 @@ public class ContactDeletionViaEditTests extends TestBase{
 
         if (! app.contact ().isThereAContactToModify()) {
             app.goTo ().groupPage ();
-            if (! app.group ().isThereAParticularGroup ("my_group")) {
-                app.group ().create (new GroupData ().withName ("my_group"));
+            if (! app.group ().isThereAParticularGroup ("group")) {
+                app.group ().create (new GroupData ().withName ("group"));
             }
             app.contact ().fullCreation (new ContactData ()
                     .withFirstName ("Теста").withLastName ("Тестовая").withAddress ("Ужгород").withTelHome ("786875")
-                            .withEmail ("email@gmail.com").withGroup ("my_group"),
+                            .withEmail ("email@gmail.com").withGroup ("group"),
                     true, app);
         }
     }

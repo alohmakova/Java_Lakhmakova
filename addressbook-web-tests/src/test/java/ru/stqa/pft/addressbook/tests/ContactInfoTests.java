@@ -17,12 +17,12 @@ public class ContactInfoTests extends TestBase {
 
         if (! app.contact ().isThereAContactToModify()) {
             app.goTo ().groupPage ();
-            if (! app.group ().isThereAParticularGroup ("my_group")) {
-                app.group ().create (new GroupData ().withName ("my_group"));
+            if (! app.group ().isThereAParticularGroup ("group")) {
+                app.group ().create (new GroupData ().withName ("group"));
             }
             app.contact ().fullCreation (new ContactData ()
                             .withFirstName ("Теста").withLastName ("Тестовая").withAddress ("Псков").withTelHome ("111")
-                            .withTelMobile ("+79057590236").withTelWork ("6666").withEmail ("email@gmail.com").withGroup ("my_group"),
+                            .withTelMobile ("+79057590236").withTelWork ("6666").withEmail ("email@gmail.com").withGroup ("group"),
                     true, app);
         }
     }

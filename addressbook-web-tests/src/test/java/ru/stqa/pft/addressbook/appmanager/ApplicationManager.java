@@ -42,7 +42,7 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.IE)) {
             wd = new InternetExplorerDriver();
         }
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
        //ожидание, чтобы проверить, если какие-то элементы на странице появляются позже, потому что долго загружаются
         js = (JavascriptExecutor) wd;
         wd.get(properties.getProperty ("web.baseUrl"));

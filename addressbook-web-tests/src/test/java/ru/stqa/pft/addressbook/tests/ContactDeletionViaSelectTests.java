@@ -17,12 +17,12 @@ public class ContactDeletionViaSelectTests extends TestBase {
 
         if (! app.contact ().isThereAContactToModify()) {
             app.goTo ().groupPage ();
-            if (! app.group ().isThereAParticularGroup ("my_group")) {
-                app.group ().create (new GroupData ().withName ("my_group"));
+            if (! app.group ().isThereAParticularGroup ("group")) {
+                app.group ().create (new GroupData ().withName ("group"));
             }
             app.contact ().fullCreation (new ContactData ()
                             .withFirstName ("Теста").withLastName ("Тестовая").withAddress ("Ужгород").withTelHome ("786875")
-                            .withTelMobile ("+989").withTelWork ("2222").withEmail ("email@gmail.com").withGroup ("my_group"),
+                            .withTelMobile ("+989").withTelWork ("2222").withEmail ("email@gmail.com").withGroup ("group"),
                     true, app);
         }
     }
@@ -32,7 +32,7 @@ public class ContactDeletionViaSelectTests extends TestBase {
            Contacts before = app.contact ().all ();
            ContactData deletedContact = before.iterator ().next ();
            app.contact ().delete (deletedContact);
-           //app.contact ().deleteButton ();
+           app.contact ().waitForMessage ();
            app.goTo ().homePage ();
            assertEquals (app.contact ().count (), before.size () - 1);
            Contacts after = app.contact ().all ();
