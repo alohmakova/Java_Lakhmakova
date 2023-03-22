@@ -32,7 +32,7 @@ public class ContactDeletionViaSelectTests extends TestBase {
            Contacts before = app.contact ().all ();
            ContactData deletedContact = before.iterator ().next ();
            app.contact ().delete (deletedContact);
-           //app.contact ().waitForMessage ();
+           //app.contact ().deleteButton ();
            app.goTo ().homePage ();
            assertEquals (app.contact ().count (), before.size () - 1);
            Contacts after = app.contact ().all ();

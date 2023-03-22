@@ -167,10 +167,15 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void waitForMessage() {
-        wd.switchTo().alert().accept();
-        wd.findElement(By.cssSelector("div.msgbox"));
-    }
+//    public void waitForMessage() {
+//        wd.switchTo().alert().accept();
+//        wd.findElement(By.cssSelector("div.msgbox"));
+//    }
+//    public void deleteButton() {
+//        click(By.xpath("//input[@value='Delete']"));
+//        wd.switchTo().alert().accept();
+//        wd.findElement(By.cssSelector("div.msgbox"));
+//    }
 
     public ContactData infoFromEditForm(ContactData contact) {
         initModificationById(contact.getId());
