@@ -52,7 +52,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
 }</component>
-  <component name="RunManager" selected="TestNG.ru.stqa.pft.addressbook.tests">
+  <component name="RunManager" selected="Application.ContactDataGenerator">
     <configuration name="ContactDataGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.stqa.pft.addressbook.generators.ContactDataGenerator" />
       <module name="addressbook-web-tests.test" />
@@ -143,8 +143,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.ru.stqa.pft.addressbook.tests" />
         <item itemvalue="Application.ContactDataGenerator" />
+        <item itemvalue="TestNG.ru.stqa.pft.addressbook.tests" />
         <item itemvalue="TestNG.ContactCreationTests" />
         <item itemvalue="TestNG.ContactModificationTests" />
         <item itemvalue="TestNG.ContactDeletionViaSelectTests" />
