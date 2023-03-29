@@ -12,18 +12,18 @@ public class GroupDeletionTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
+    if (app.db().groups ().size () == 0) {
     app.goTo ().groupPage ();
-    if (app.group ().list ().size () == 0) {
-      app.group ().create (new GroupData().withName ("my_group"));
+    app.group ().create (new GroupData().withName ("group"));
     }
   }
   @Test
   public void testGroupDeletion() throws Exception {
-    Groups before = app.group ().all ();
+    Groups before = app.db().groups ();
     GroupData deletedGroup = before.iterator ().next ();
     app.group ().delete(deletedGroup);
     assertThat (app.group ().count (), equalTo (before.size () - 1));
-    Groups after = app.group ().all ();
+    Groups after = app.db().groups ();
     //assertThat (after.size (), equalTo (before.size () - 1)); //здесь менять на index не нужно, так как здесь другой смысл
 
 

@@ -3,8 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -59,10 +57,10 @@ public class GroupCreationTests extends TestBase {
   @Test(dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData group) throws Exception {
       app.goTo ().groupPage ();
-      Groups before = app.group ().all ();
+      Groups before = app.db().groups ();
       app.group ().create (group);
       assertThat (app.group ().count (), equalTo (before.size () + 1));
-      Groups after = app.group ().all ();
+      Groups after = app.db().groups ();
       //assertThat (after.size (), equalTo (before.size () + 1));
       //теперь эту проверку можно поставить как перед, так и после assertThat
       //так кака метод withAdded делает копию - объект before остаётся неизменным - в сравнении участвует его копия
@@ -74,11 +72,11 @@ public class GroupCreationTests extends TestBase {
   @Test
   public void testBadGroupCreation() throws Exception {//создать группу с апострофом в названии test' нельзя
     app.goTo ().groupPage ();
-    Groups before = app.group ().all ();
+    Groups before = app.db().groups ();
     GroupData group = new GroupData ().withName ("test'");
     app.group ().create (group);
     assertThat (app.group ().count (), equalTo (before.size ()));
-    Groups after = app.group ().all ();
+    Groups after = app.db().groups ();
     //assertThat (after.size (), equalTo (before.size ()));
 
 
