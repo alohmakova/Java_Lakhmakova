@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -14,15 +15,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactInfoTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
-
-        if (! app.contact ().isThereAContactToModify()) {
-            app.goTo ().groupPage ();
-            if (! app.group ().isThereAParticularGroup ("group")) {
+        File photo = new File ("src/test/resources/2023-02-27_12-49-38.png");
+        if (app.db().contacts ().size () == 0) {
+            if (app.db().groups ().size () == 0) {
+                app.goTo ().groupPage ();
                 app.group ().create (new GroupData ().withName ("group"));
             }
             app.contact ().fullCreation (new ContactData ()
-                            .withFirstName ("Теста").withLastName ("Тестовая").withAddress ("Псков").withTelHome ("111")
-                            .withTelMobile ("+79057590236").withTelWork ("6666").withEmail ("email@gmail.com").withGroup ("group"),
+                            .withFirstName ("Сравнение").withLastName ("Сравнительное").withAddress ("Ужгород").withTelHome ("786875")
+                            .withPhoto (photo).withTelMobile ("+989").withTelWork ("2222").withEmail ("email@gmail.com").withGroup ("test 0"),
                     true, app);
         }
     }

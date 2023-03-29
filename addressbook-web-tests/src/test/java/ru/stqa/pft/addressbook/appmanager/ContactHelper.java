@@ -32,6 +32,7 @@ public class ContactHelper extends HelperBase {
         type (By.name ("email"), contactData.getEmail ());
         type (By.name ("email2"), contactData.getEmail2 ());
         type (By.name ("email3"), contactData.getEmail3 ());
+        //choose (By.name ("new_group"), contactData.getGroup ());
 
         if (creation) {
             new Select (wd.findElement (By.name ("new_group"))).selectByVisibleText (contactData.getGroup ());

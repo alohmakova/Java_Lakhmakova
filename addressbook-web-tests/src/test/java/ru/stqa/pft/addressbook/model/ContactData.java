@@ -104,6 +104,44 @@ public class ContactData {
         return this;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass () != o.getClass ()) return false;
+
+        ContactData that = (ContactData) o;
+
+        if (id != that.id) return false;
+        if (!Objects.equals (firstName, that.firstName)) return false;
+        if (!Objects.equals (lastName, that.lastName)) return false;
+        if (!Objects.equals (address, that.address)) return false;
+        if (!Objects.equals (telMobile, that.telMobile)) return false;
+        if (!Objects.equals (telHome, that.telHome)) return false;
+        if (!Objects.equals (telWork, that.telWork)) return false;
+        if (!Objects.equals (allPhones, that.allPhones)) return false;
+        if (!Objects.equals (allEmails, that.allEmails)) return false;
+        if (!Objects.equals (email, that.email)) return false;
+        if (!Objects.equals (email2, that.email2)) return false;
+        return Objects.equals (email3, that.email3);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (firstName != null ? firstName.hashCode () : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode () : 0);
+        result = 31 * result + (address != null ? address.hashCode () : 0);
+        result = 31 * result + (telMobile != null ? telMobile.hashCode () : 0);
+        result = 31 * result + (telHome != null ? telHome.hashCode () : 0);
+        result = 31 * result + (telWork != null ? telWork.hashCode () : 0);
+        result = 31 * result + (allPhones != null ? allPhones.hashCode () : 0);
+        result = 31 * result + (allEmails != null ? allEmails.hashCode () : 0);
+        result = 31 * result + (email != null ? email.hashCode () : 0);
+        result = 31 * result + (email2 != null ? email2.hashCode () : 0);
+        result = 31 * result + (email3 != null ? email3.hashCode () : 0);
+        return result;
+    }
+
     public ContactData withEmail(String email) {
         this.email = email;
         return this;
@@ -186,26 +224,6 @@ public class ContactData {
 
     public String getGroup() {
         return group;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass () != o.getClass ()) return false;
-
-        ContactData that = (ContactData) o;
-
-        if (id != that.id) return false;
-        if (!Objects.equals (firstName, that.firstName)) return false;
-        return Objects.equals (lastName, that.lastName);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (firstName != null ? firstName.hashCode () : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode () : 0);
-        return result;
     }
 
     @Override

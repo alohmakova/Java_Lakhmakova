@@ -9,33 +9,7 @@
     "email": "0email@mail.com",
     "email2": "0email2@mail.com",
     "email3": "0email3@mail.com",
-    "photo": {},
-    "group": "group"
-  },
-  {
-    "firstName": "FirstName 1",
-    "lastName": "LastName 1",
-    "address": "Address 1",
-    "telMobile": "2221222",
-    "telHome": "1111111",
-    "telWork": "3331333",
-    "email": "1email@mail.com",
-    "email2": "1email2@mail.com",
-    "email3": "1email3@mail.com",
-    "photo": {},
-    "group": "group"
-  },
-  {
-    "firstName": "FirstName 2",
-    "lastName": "LastName 2",
-    "address": "Address 2",
-    "telMobile": "2222222",
-    "telHome": "1112111",
-    "telWork": "3332333",
-    "email": "2email@mail.com",
-    "email2": "2email2@mail.com",
-    "email3": "2email3@mail.com",
-    "photo": {},
-    "group": "group"
+    "photo": "src\\test\\resources\\2023-02-27_12-49-38.png",
+    "group": "test 0"
   }
 ]

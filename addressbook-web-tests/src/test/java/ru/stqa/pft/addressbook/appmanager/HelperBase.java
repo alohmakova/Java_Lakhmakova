@@ -28,6 +28,17 @@ public class HelperBase {
             }
         }
     }
+    protected void choose(By locator, String text) {
+        click(locator);
+        if (text != null) {
+            String existingText = wd.findElement(locator).getAttribute("value");
+            if (! text.equals(existingText)) {
+                wd.findElement(locator).click ();
+            }
+        }
+        //wd.findElement(By.name ("new_group")).click ();
+        //wd.findElement(By.cssSelector ("input[value='"+ id + "']")).click ();
+    }
     protected void attach(By locator, File file) {
        if (file != null) {
                 wd.findElement(locator).sendKeys(file.getAbsolutePath ());
