@@ -23,7 +23,7 @@ public class ContactInfoTests extends TestBase {
             }
             app.contact ().fullCreation (new ContactData ()
                             .withFirstName ("Сравнение").withLastName ("Сравнительное").withAddress ("Ужгород").withTelHome ("786875")
-                            .withPhoto (photo).withTelMobile ("+989").withTelWork ("2222").withEmail ("email@gmail.com").withGroup ("test 0"),
+                            .withPhoto (photo).withTelMobile ("+989").withTelWork ("2222").withEmail ("email@gmail.com"),
                     true, app);
         }
     }

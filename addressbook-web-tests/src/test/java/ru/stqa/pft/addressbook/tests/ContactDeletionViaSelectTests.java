@@ -24,7 +24,7 @@ public class ContactDeletionViaSelectTests extends TestBase {
             }
             app.contact ().fullCreation (new ContactData ()
                             .withFirstName ("Теста").withLastName ("Тестовая").withAddress ("Ужгород").withTelHome ("786875")
-                            .withPhoto (photo).withTelMobile ("+989").withTelWork ("2222").withEmail ("email@gmail.com").withGroup ("test 0"),
+                            .withPhoto (photo).withTelMobile ("+989").withTelWork ("2222").withEmail ("email@gmail.com"),
                     true, app);
         }
     }
@@ -38,7 +38,7 @@ public class ContactDeletionViaSelectTests extends TestBase {
            app.goTo ().homePage ();
            assertEquals (app.contact ().count (), before.size () - 1);
            Contacts after = app.db().contacts ();
-
            assertThat (after, equalTo (before.without (deletedContact)));
+           verifyContactListInUI ();
     }
 }

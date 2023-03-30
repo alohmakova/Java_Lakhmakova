@@ -24,7 +24,7 @@ public class ContactDeletionViaEditTests extends TestBase{
             }
             app.contact ().fullCreation (new ContactData ()
                     .withFirstName ("Теста").withLastName ("Тестовая").withAddress ("Ужгород").withTelHome ("786875")
-                            .withPhoto (photo).withEmail ("email@gmail.com").withGroup ("test 0"),
+                            .withPhoto (photo).withEmail ("email@gmail.com"),
                     true, app);
         }
     }
@@ -37,9 +37,8 @@ public class ContactDeletionViaEditTests extends TestBase{
         app.goTo ().homePage ();
         assertEquals (app.contact ().count (), before.size () - 1);
         Contacts after = app.db().contacts ();
-        //assertEquals (after.size (), before.size () - 1);
-
         assertThat (after, equalTo (before.without (modifiedContact)));
+        verifyContactListInUI ();
     }
 
 }

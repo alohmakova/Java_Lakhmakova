@@ -20,7 +20,7 @@ public class ContactModificationTests extends TestBase {
             //if (!app.contact ().isThereAContactToModify ()) {
             app.contact ().fullCreation (new ContactData ()
                             .withFirstName ("Лидия").withLastName ("Иванова").withAddress ("Самара").withTelHome ("786875")
-                            .withTelMobile("+989").withTelWork ("2222").withPhoto (photo).withEmail ("ivanova@gmail.com").withGroup ("[none]"),
+                            .withTelMobile("+989").withTelWork ("2222").withPhoto (photo).withEmail ("ivanova@gmail.com"),
                     true, app);
         }
     }
@@ -38,8 +38,7 @@ public class ContactModificationTests extends TestBase {
         app.contact ().returnToHomePage ();
         assertEquals (app.contact ().count (), before.size ());
         Contacts after = app.db().contacts ();
-        //assertEquals (after.size (), before.size ());
-
         assertThat (after, equalTo (before.without (modifiedContact).withAdded (contact)));
+        verifyContactListInUI ();
     }
 }

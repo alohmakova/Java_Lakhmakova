@@ -5,10 +5,8 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -74,7 +72,7 @@ public class ContactDataGenerator {
               writer.write(String.format ("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
                       contact.getLastName (), contact.getFirstName (), contact.getAddress (),
                       contact.getEmail (), contact.getEmail2 (), contact.getEmail3 (),
-                      contact.getTelHome (), contact.getTelMobile (), contact.getTelWork (),contact.getPhoto (), contact.getGroup ()));
+                      contact.getTelHome (), contact.getTelMobile (), contact.getTelWork (),contact.getPhoto (), contact.getGroups ()));
           }
       }
     }
@@ -84,7 +82,7 @@ public class ContactDataGenerator {
         for (int i = 0; i < count; i++){
             contacts.add (new ContactData().withLastName (String.format ("LastName %s", i)).withFirstName (String.format ("FirstName %s", i)).withAddress (String.format ("Address %s", i))
                     .withEmail (String.format (i + "email@mail.com")).withEmail2 (String.format (i + "email2@mail.com")).withEmail3 (String.format (i + "email3@mail.com"))
-                    .withTelHome (String.format ("111" + i + "111")).withTelMobile (String.format ("222" + i + "222")).withTelWork (String.format ("333" + i + "333")).withPhoto (photo).withGroup (String.format ("test 0")));
+                    .withTelHome (String.format ("111" + i + "111")).withTelMobile (String.format ("222" + i + "222")).withTelWork (String.format ("333" + i + "333")).withPhoto (photo));
         }
         return contacts;
     }
