@@ -36,14 +36,15 @@ public class HbConnectionTest {
 //        public void testHbConnection1(){
 //            Session session = sessionFactory.openSession ();
 //                session.beginTransaction ();
-//                List result = session.createQuery ("from GroupData").list ();
-//                for (GroupData group : (List<GroupData>) result) {
-//                    System.out.println (group);
-//                }
+//                List<ContactData> result = session.createQuery ("from ContactData where deprecated = '0000-00-00' ").list ();
+//
 //                session.getTransaction ().commit ();
 //                session.close ();
+//
+//        for (ContactData contact : result) {
+//          System.out.println (contact);
+//                }
 //            }
-//        }
     @Test
     public void testHbConnection(){
         Session session = sessionFactory.openSession ();

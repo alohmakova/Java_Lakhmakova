@@ -64,7 +64,7 @@ public class ContactHelper extends HelperBase {
     public void selectContact(int index) {
         wd.findElements (By.name ("selected[]")).get (index).click ();
     }
-    private void selectContactById(int id) {
+    public void selectContactById(int id) {
         wd.findElement(By.cssSelector ("input[value='" + id + "']")).click (); //здесь должен искаться 1 элемент - обрати внимание!
     }
 
@@ -197,5 +197,27 @@ public class ContactHelper extends HelperBase {
         return new ContactData().withId (contact.getId()).withFirstName (firstname).withLastName (lastname).withAddress(address)
                                 .withTelHome (home).withTelMobile (mobile).withTelWork (work).withEmail (email).withEmail2 (email2).withEmail3 (email3);
     }
+
+    public void toGroupList() {
+
+        click (By.name ("to_group"));
+    }
+    public void selectGroup(int value) {
+
+        new Select(wd.findElement(By.name("to_group"))).selectByValue (String.valueOf (value)); //VisibleText("new");
+    }
+//    public void selectContactById(int id) {
+//        wd.findElement(By.cssSelector ("input[value='" + id + "']")).click (); //здесь должен искаться 1 элемент - обрати внимание!
+//    }
+    public void addToGroup() {
+
+        click (By.name("add"));
+    }
+    public void goToPaticularGroupPage(String groupName) {
+        wd.findElement(By.linkText(String.format("group page \"%s\"", groupName))).click();
+
+        //wd.findElement(By.linkText("group page \"new\"")).click();
+    }
+
 }
 
