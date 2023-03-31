@@ -42,7 +42,7 @@ public class ContactAddToGroupTests extends TestBase {
         app.contact ().goToPaticularGroupPage (selectedGroup.getName ());
 //        assertEquals (app.contact ().count (), before.size () - 1);
         Contacts after = app.db().contacts ();
-        assertThat (after, equalTo (before.without (selectedGroup)));
+        assertThat (before, equalTo (after.without (selectedGroup)));
         //verifyContactListInUI ();
     }
 

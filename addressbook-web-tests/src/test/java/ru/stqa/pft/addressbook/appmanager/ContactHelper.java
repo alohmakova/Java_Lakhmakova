@@ -219,5 +219,16 @@ public class ContactHelper extends HelperBase {
         //wd.findElement(By.linkText("group page \"new\"")).click();
     }
 
+    public void removeFromGroup() {
+        wd.findElement(By.name("remove")).click();
+    }
+
+    public void selectContactById1(int id) {
+        wd.findElement(By.id(String.format ("%s", id))).click();
+    }
+    public void selectGroupFromList(int id) {
+
+        new Select(wd.findElement(By.name("group"))).selectByValue (String.valueOf (id));
+    }
 }
 
