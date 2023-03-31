@@ -33,4 +33,10 @@ public class Contacts extends ForwardingSet<ContactData> {
         contacts.remove (contact);
         return contacts;
     }
+
+    public Contacts without(GroupData group) {
+        Contacts contacts = new Contacts(this);
+        contacts.remove (group);
+        return contacts;
+    }
 }
