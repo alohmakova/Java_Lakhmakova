@@ -202,6 +202,11 @@ public class ContactHelper extends HelperBase {
 
         click (By.name ("to_group"));
     }
+    public void GroupListAboveTheTable() {
+
+        wd.findElement(By.name("group")).click();
+    }
+
     public void selectGroup(int value) {
 
         new Select(wd.findElement(By.name("to_group"))).selectByValue (String.valueOf (value)); //VisibleText("new");
@@ -213,7 +218,7 @@ public class ContactHelper extends HelperBase {
 
         click (By.name("add"));
     }
-    public void goToPaticularGroupPage(String groupName) {
+    public void goToUsersAddedGroupPage(String groupName) {
         wd.findElement(By.linkText(String.format("group page \"%s\"", groupName))).click();
 
         //wd.findElement(By.linkText("group page \"new\"")).click();
@@ -229,6 +234,14 @@ public class ContactHelper extends HelperBase {
     public void selectGroupFromList(int id) {
 
         new Select(wd.findElement(By.name("group"))).selectByValue (String.valueOf (id));
+    }
+    public void selectNone() {
+
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
+    }
+
+    public void selectAll() {
+        wd.findElement(By.id("MassCB")).click();
     }
 }
 
