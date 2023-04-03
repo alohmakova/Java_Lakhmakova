@@ -10,8 +10,8 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.sql.*;
 import java.util.List;
-import java.util.Set;
 
 public class DbHelper {
     private final SessionFactory sessionFactory;
@@ -40,5 +40,33 @@ public class DbHelper {
         session.getTransaction ().commit ();
         session.close ();
         return new Contacts (result);
+    }
+    public Groups groupToAddContact(){
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbook?" + "user=root&password=");
+            Statement st = conn.createStatement ();
+            ResultSet rs = st.executeQuery ("SELECT g.group_id, group_name, group_header, group_footer FROM address_in_groups as a " +
+                                                "JOIN group_list as g ON g.group_id = a.group_id " +
+                                                "WHERE a.modified = (SELECT MAX(a.modified) FROM address_in_groups)");
+            Groups groups = new Groups ();
+            while (rs.next()) {
+                groups.add (new GroupData ().withId (rs.getInt ("group_id")).withName (rs.getString ("group_name"))
+                        .withHeader (rs.getString ("group_header")).withFooter (rs.getString ("group_footer")));
+            }
+            rs.close ();
+            st.close ();
+            conn.close ();
+            System.out.println ("Последний измененный контакт добавлен в группу " + new Groups (groups));
+            return new Groups (groups);
+
+        } catch (SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            return null;
+
+        }
     }
 }

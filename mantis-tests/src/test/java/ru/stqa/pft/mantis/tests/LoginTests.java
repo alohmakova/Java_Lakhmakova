@@ -8,7 +8,7 @@ import java.io.IOException;
 import static org.testng.Assert.assertTrue;
 import static ru.stqa.pft.mantis.tests.TestBase.app;
 
-public class LoginTests {
+public class LoginTests extends TestBase {
     @Test
     public void testLogin() throws IOException {
         HttpSession session = app.newSession ();

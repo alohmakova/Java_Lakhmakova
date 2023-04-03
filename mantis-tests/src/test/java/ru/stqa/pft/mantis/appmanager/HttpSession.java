@@ -27,19 +27,19 @@ public class HttpSession {
     }
 
     public boolean login(String username, String password) throws IOException {
-        HttpPost post = new HttpPost (app.getProperty ("web.baseUrl") + "/login.php");
+        HttpPost post = new HttpPost (app.getProperty ("web.baseUrl") + "/login.php"); //login_page.php
         List<NameValuePair> params = new ArrayList<NameValuePair> ();
         params.add (new BasicNameValuePair ("username", username));
         params.add (new BasicNameValuePair ("password", password));
         params.add (new BasicNameValuePair ("secure_session", "on"));
-        params.add (new BasicNameValuePair ("return", "index.php"));
+        params.add (new BasicNameValuePair ("return", "index.php")); //account_page.php, index.php без / my_view_page.php
         post.setEntity (new UrlEncodedFormEntity (params));
         CloseableHttpResponse response = httpclient.execute (post);
-        String body = geTextFrom (response);
-        return body.contains (String.format ("<span class=\"italic\">%s<span>", username));
+        String body = getTextFrom (response);
+        return body.contains (String.format ("<span class=\"user-info\">%s</span>", username)); //("<span class=\"italic\">%s<span>", username)
     }
 
-    private String geTextFrom(CloseableHttpResponse response) throws IOException {
+    private String getTextFrom(CloseableHttpResponse response) throws IOException {
         try {
             return EntityUtils.toString (response.getEntity ());
         } finally {
@@ -50,8 +50,8 @@ public class HttpSession {
     public boolean isLoggedInAs(String username) throws IOException {
         HttpGet get = new HttpGet (app.getProperty ("web.baseUrl") + "/index.php");
         CloseableHttpResponse response = httpclient.execute (get);
-        String body = geTextFrom (response);
-        return body.contains (String.format ("<span class=\"italic\">%s<span>", username));
+        String body = getTextFrom (response);
+        return body.contains (String.format ("<span class=\"user-info\">%s</span>", username)); //("<span class=\"italic\">%s<span>", username)
 
     }
 }

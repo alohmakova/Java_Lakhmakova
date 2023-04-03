@@ -64,7 +64,7 @@
       <recent name="C:\Users\Robin\Documents\GitHub\Java_Lakhmakova\addressbook-web-tests\src\test\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.ru.stqa.pft.addressbook.tests">
+  <component name="RunManager" selected="TestNG.DbConnectionTest">
     <configuration name="ContactAddToGroupTests" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="addressbook-web-tests.test" />
       <extension name="coverage">
@@ -116,7 +116,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ContactRemoveFromGroupTests" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="DbConnectionTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="addressbook-web-tests.test" />
       <extension name="coverage">
         <pattern>
@@ -125,7 +125,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.stqa.pft.addressbook.tests" />
-      <option name="MAIN_CLASS_NAME" value="ru.stqa.pft.addressbook.tests.ContactRemoveFromGroupTests" />
+      <option name="MAIN_CLASS_NAME" value="ru.stqa.pft.addressbook.tests.DbConnectionTest" />
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
@@ -186,19 +186,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="TestNG.DbConnectionTest" />
       <item itemvalue="TestNG.ContactCreationTests" />
       <item itemvalue="TestNG.ContactModificationTests" />
-      <item itemvalue="TestNG.ContactRemoveFromGroupTests" />
       <item itemvalue="TestNG.ContactAddToGroupTests" />
       <item itemvalue="TestNG.ru.stqa.pft.addressbook.tests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.DbConnectionTest" />
         <item itemvalue="TestNG.ru.stqa.pft.addressbook.tests" />
         <item itemvalue="TestNG.ContactModificationTests" />
         <item itemvalue="TestNG.ContactAddToGroupTests" />
         <item itemvalue="TestNG.ContactCreationTests" />
-        <item itemvalue="TestNG.ContactRemoveFromGroupTests" />
       </list>
     </recent_temporary>
   </component>
