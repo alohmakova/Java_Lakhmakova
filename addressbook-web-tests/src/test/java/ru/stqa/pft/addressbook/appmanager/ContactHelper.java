@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -228,8 +229,18 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.name("remove")).click();
     }
 
-    public void selectContactById1(int id) {
-        wd.findElement(By.id(String.format ("%s", id))).click();
+//    public boolean findContactInTheGroup(int id) {
+//        wd.findElement(By.id(String.format ("%s", id)));
+//        return true;
+//    }//wd.findElement(By.id(String.format ("%s", id))).click();
+
+    public boolean isContactPresentInTheGroup (int id){
+        try {
+            wd.findElement(By.id(String.format ("%s", id)));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
     public void selectGroupFromList(int id) {
 

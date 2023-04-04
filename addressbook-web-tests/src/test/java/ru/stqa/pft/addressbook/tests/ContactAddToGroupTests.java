@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -11,6 +13,7 @@ import java.io.File;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertTrue;
 
 public class ContactAddToGroupTests extends TestBase {
     @BeforeMethod
@@ -34,7 +37,6 @@ public class ContactAddToGroupTests extends TestBase {
     @Test
     public void testAddToGroup() throws Exception {
         app.goTo ().homePage ();
-        //Contacts before = app.db().contacts ();
         app.contact ().selectNone();
         Contacts withoutGroup = app.contact ().all ();
         ContactData selectedContact = withoutGroup.iterator ().next ();
@@ -44,9 +46,9 @@ public class ContactAddToGroupTests extends TestBase {
         GroupData selectedGroup = g.iterator ().next ();
         app.contact ().goToUsersAddedGroupPage (selectedGroup.getName ());
         Groups groupToAddContact = app.db().groupToAddContact ();
-        //assertEquals (app.contact ().count (), before.size ());
-        assertThat (groupToAddContact, equalTo (selectedContact.getGroups ().withAdded (selectedGroup)));
-        //verifyContactListInUI ();
+            assertTrue(app.contact ().isContactPresentInTheGroup (selectedContact.getId ()),
+                    "Контакт " + selectedContact.getFirstName () + " " + selectedContact.getLastName () + " " + "с id " + selectedContact.getId () +
+                            " не найден на странице группы " + selectedGroup.getName ());
         System.out.println (groupToAddContact);
         System.out.println (selectedContact);
         System.out.println (selectedGroup);

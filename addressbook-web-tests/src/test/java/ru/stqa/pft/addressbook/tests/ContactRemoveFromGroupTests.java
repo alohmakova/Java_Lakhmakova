@@ -11,6 +11,8 @@ import java.io.File;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class ContactRemoveFromGroupTests extends TestBase {
     @BeforeMethod
@@ -69,7 +71,6 @@ public class ContactRemoveFromGroupTests extends TestBase {
     }
         @Test
         public void testRemoveFromGroup() throws Exception {
-//            Contacts before = app.contact ().all ();
             Contacts withoutGroup = app.contact ().all ();
             ContactData selectedContact = withoutGroup.iterator ().next ();
             app.contact ().selectContactById (selectedContact.getId ());
@@ -77,10 +78,9 @@ public class ContactRemoveFromGroupTests extends TestBase {
             Groups g = app.db ().groups ();
             GroupData selectedGroup = g.iterator ().next ();
             app.contact ().goToUsersAddedGroupPage (selectedGroup.getName ());
-//        assertEquals (app.contact ().count (), before.size () - 1);
-//        Contacts after = app.contact ().all ();
-//        assertThat (after, equalTo (before.withAdded(selectedContact)));
-            //verifyContactListInUI ();
+            assertFalse (app.contact ().isContactPresentInTheGroup (selectedContact.getId ()),
+                    "Контакт " + selectedContact.getFirstName () + " " + selectedContact.getLastName () + " " + "с id " + selectedContact.getId () +
+                            " присутствует на странице группы " + selectedGroup.getName ());
         }
     }
 
