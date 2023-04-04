@@ -10,6 +10,7 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation 'org.hamcrest:hamcrest-junit:2.0.0.0'
     implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+    implementation 'commons-net:commons-net:3.4'
 }
 
 test {
