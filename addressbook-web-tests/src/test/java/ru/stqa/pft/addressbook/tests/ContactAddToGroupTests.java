@@ -1,7 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -10,6 +8,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,7 +29,7 @@ public class ContactAddToGroupTests extends TestBase {
 
         if (app.db().groups ().size () == 0) {
             app.goTo ().groupPage ();
-            app.group ().create (new GroupData ().withName ("test 0"));
+            app.group ().create (new GroupData ().withName ("example"));
         }
     }
 
@@ -41,17 +40,23 @@ public class ContactAddToGroupTests extends TestBase {
         Contacts withoutGroup = app.contact ().all ();
         ContactData selectedContact = withoutGroup.iterator ().next ();
         app.contact ().selectContactById (selectedContact.getId ());//выбрать контакт при помощи чек бокса
-        app.contact ().addToGroup ();
         Groups g = app.db().groups ();
         GroupData selectedGroup = g.iterator ().next ();
+        app.contact ().toGroupList();
+        app.contact ().selectGroup(selectedGroup.getId ());
+        app.contact ().addToGroup ();
         app.contact ().goToUsersAddedGroupPage (selectedGroup.getName ());
-        Groups groupToAddContact = app.db().groupToAddContact ();
-            assertTrue(app.contact ().isContactPresentInTheGroup (selectedContact.getId ()),
-                    "Контакт " + selectedContact.getFirstName () + " " + selectedContact.getLastName () + " " + "с id " + selectedContact.getId () +
-                            " не найден на странице группы " + selectedGroup.getName ());
-        System.out.println (groupToAddContact);
-        System.out.println (selectedContact);
-        System.out.println (selectedGroup);
+        Groups groupsOfAddedContact = app.db().groupsOfAddedContact (selectedContact.getId ());
+
+//        assertTrue(app.contact ().isContactPresentInTheGroup (selectedContact.getId ()),
+//                    "Контакт " + selectedContact.getFirstName () + " " + selectedContact.getLastName () + " " + "с id " + selectedContact.getId () +
+//                            " не найден на странице группы " + selectedGroup.getName ());
+
+        assertThat (selectedContact.getGroups ().withAdded(selectedGroup), equalTo (groupsOfAddedContact));
+
+        System.out.println ("Конечный список групп выбранного контакта " + groupsOfAddedContact);
+        System.out.println ("Выбранный для добавления в группу контакт " + selectedContact);
+        System.out.println ("Выбранная группа, куда добавляется контакт " + selectedGroup);
     }
 
 }

@@ -199,28 +199,33 @@ public class ContactHelper extends HelperBase {
                                 .withTelHome (home).withTelMobile (mobile).withTelWork (work).withEmail (email).withEmail2 (email2).withEmail3 (email3);
     }
 
+    //wd.findElement(By.name("to_group")).click();
+    //new Select(wd.findElement(By.name("to_group"))).selectByVisibleText("new");
+    //wd.findElement(By.name("add")).click();
+
     public void toGroupList() {
 
-        click (By.name ("to_group"));
+        wd.findElement(By.name("to_group")).click();
     }
     public void GroupListAboveTheTable() {
 
         wd.findElement(By.name("group")).click();
     }
 
-    public void selectGroup(int value) {
-
-        new Select(wd.findElement(By.name("to_group"))).selectByValue (String.valueOf (value)); //VisibleText("new");
+    public void selectGroup(int id) {
+        new Select(wd.findElement(By.name("to_group"))).selectByValue (String.valueOf (id));
+        //new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupName);//VisibleText("new");
     }
 //    public void selectContactById(int id) {
 //        wd.findElement(By.cssSelector ("input[value='" + id + "']")).click (); //здесь должен искаться 1 элемент - обрати внимание!
 //    }
     public void addToGroup() {
 
-        click (By.name("add"));
+        wd.findElement(By.name("add")).click();
     }
     public void goToUsersAddedGroupPage(String groupName) {
         wd.findElement(By.linkText(String.format("group page \"%s\"", groupName))).click();
+       // wd.findElement(By.xpath ("//a[@href='./?group=" + id + "']")).click ();
 
         //wd.findElement(By.linkText("group page \"new\"")).click();
     }
@@ -228,11 +233,6 @@ public class ContactHelper extends HelperBase {
     public void removeFromGroup() {
         wd.findElement(By.name("remove")).click();
     }
-
-//    public boolean findContactInTheGroup(int id) {
-//        wd.findElement(By.id(String.format ("%s", id)));
-//        return true;
-//    }//wd.findElement(By.id(String.format ("%s", id))).click();
 
     public boolean isContactPresentInTheGroup (int id){
         try {
@@ -254,5 +254,6 @@ public class ContactHelper extends HelperBase {
     public void selectAll() {
         wd.findElement(By.id("MassCB")).click();
     }
+
 }
 
