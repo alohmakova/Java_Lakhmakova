@@ -89,6 +89,9 @@ public class ContactRemoveFromGroupTests extends TestBase {
 
             Groups groupsOfAddedContact = app.db().groupsOfAddedContact (selectedContact.getId ());
             assertThat (selectedContact.getGroups ().without (selectedGroup), equalTo (groupsOfAddedContact));
+
+            assertTrue (app.db().contactAddedToGroup (selectedContact.getId (), selectedGroup.getId ()), "Контакт " + selectedContact.getFirstName () + " " + selectedContact.getLastName () + " " + "с id " + selectedContact.getId () +
+                          " присутствует на странице группы " + selectedGroup.getName ());
         }
     }
 

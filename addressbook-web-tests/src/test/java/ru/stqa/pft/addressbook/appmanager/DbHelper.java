@@ -11,6 +11,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DbHelper {
@@ -57,7 +58,7 @@ public class DbHelper {
             rs.close ();
             st.close ();
             conn.close ();
-            System.out.println ("Последний измененный контакт добавлен в группу " + new Groups (groups));
+            //System.out.println ("Последний измененный контакт добавлен в группу " + new Groups (groups));
             return groups;
 
         } catch (SQLException ex) {
@@ -69,4 +70,32 @@ public class DbHelper {
 
         }
     }
-}
+
+    public boolean contactAddedToGroup(int id, int group_id) {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection ("jdbc:mysql://localhost:3306/addressbook?" + "user=root&password=");
+            Statement st = conn.createStatement ();
+            ResultSet rs = st.executeQuery ("SELECT id, group_id FROM address_in_groups WHERE id = " + id + " AND group_id = " + group_id);
+            List<Integer> contactsInGroupList = new ArrayList<> ();
+            while (rs.next ()) {
+                int idFromDb = rs.getInt ("id");
+                int group_idFromDb = rs.getInt ("group_id");
+                contactsInGroupList.add (idFromDb);
+                contactsInGroupList.add (group_idFromDb);
+            }
+            rs.close ();
+            st.close ();
+            conn.close ();
+            System.out.println ("Id контакта, Id группы: " + contactsInGroupList);
+            return contactsInGroupList.isEmpty ();
+
+        } catch (SQLException ex) {
+            // handle any errors
+            System.out.println ("SQLException: " + ex.getMessage ());
+            System.out.println ("SQLState: " + ex.getSQLState ());
+            System.out.println ("VendorError: " + ex.getErrorCode ());
+            return false;
+        }
+    }
+    }

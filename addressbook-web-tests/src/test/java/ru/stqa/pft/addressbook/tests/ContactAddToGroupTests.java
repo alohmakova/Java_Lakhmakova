@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class ContactAddToGroupTests extends TestBase {
@@ -22,8 +23,8 @@ public class ContactAddToGroupTests extends TestBase {
         if (app.contact ().count () == 0) {
             File photo = new File ("src/test/resources/2023-02-27_12-49-38.png");
             app.contact ().fullCreation (new ContactData ()
-                            .withFirstName ("Гаврила").withLastName ("Задорин").withAddress ("Тюмень").withTelHome ("786875")
-                    .withPhoto (photo).withEmail ("email@gmail.com"),
+                            .withFirstName ("Антон").withLastName ("Мишутин").withAddress ("Волгоград").withTelHome ("4546576")
+                    .withPhoto (photo).withEmail ("ytytrt@gmail.com"),
                     true, app);
         }
 
@@ -54,9 +55,9 @@ public class ContactAddToGroupTests extends TestBase {
 
         assertThat (selectedContact.getGroups ().withAdded(selectedGroup), equalTo (groupsOfAddedContact));
 
-        System.out.println ("Конечный список групп выбранного контакта " + groupsOfAddedContact);
-        System.out.println ("Выбранный для добавления в группу контакт " + selectedContact);
-        System.out.println ("Выбранная группа, куда добавляется контакт " + selectedGroup);
+        assertFalse (app.db().contactAddedToGroup (selectedContact.getId (), selectedGroup.getId ()),
+                "Контакт " + selectedContact.getFirstName () + " " + selectedContact.getLastName () + " " + "с id " + selectedContact.getId () +
+                          " не найден на странице группы " + selectedGroup.getName ());
     }
 
 }

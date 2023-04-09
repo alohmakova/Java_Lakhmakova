@@ -31,32 +31,6 @@ import java.util.List;
                 return null;
             }
         }
-
-//        public List<String> emailToChangePassword(int id) {
-//            Connection conn = null;
-//            try {
-//                conn = DriverManager.getConnection ("jdbc:mysql://localhost:3306/bugtracker?" + "user=root&password=");
-//                Statement st = conn.createStatement ();
-//                ResultSet rs = st.executeQuery ("SELECT email FROM mantis_user_table WHERE id = " + id);
-//                List<String> emailList = new ArrayList<> ();
-//                while (rs.next ()) {
-//                    String email = rs.getString ("email");
-//                    emailList.add (email);
-//                }
-//                rs.close ();
-//                st.close ();
-//                conn.close ();
-//                System.out.println (emailList);
-//                return emailList;
-//
-//            } catch (SQLException ex) {
-//                // handle any errors
-//                System.out.println ("SQLException: " + ex.getMessage ());
-//                System.out.println ("SQLState: " + ex.getSQLState ());
-//                System.out.println ("VendorError: " + ex.getErrorCode ());
-//                return null;
-//            }
-//        }
 public String emailToChangePassword(int id) {
     Connection conn = null;
     try {

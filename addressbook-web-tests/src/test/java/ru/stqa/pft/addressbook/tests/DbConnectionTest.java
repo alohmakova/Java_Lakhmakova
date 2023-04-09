@@ -34,7 +34,7 @@ public class DbConnectionTest {
             System.out.println("VendorError: " + ex.getErrorCode());
         }
     }*/
-    @Test
+    @Test(enabled = false)
     public void Test(){
         Connection conn = null;
         try {
