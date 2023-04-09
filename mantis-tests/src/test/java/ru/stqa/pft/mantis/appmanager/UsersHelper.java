@@ -2,10 +2,6 @@ package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.support.ui.Select;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class UsersHelper extends HelperBase {
 
@@ -46,5 +42,14 @@ public class UsersHelper extends HelperBase {
         //click (By.xpath (String.format ("//a[@href='manage_user_edit_page.php?user_id=%s]", id)));
 //<a href="manage_user_edit_page.php?user_id=4">eaypoc</a>
         click (By.xpath ("//input[@value='Reset Password']"));
+    }
+
+    public void newPassword(String confirmationLink, String password) {
+            wd.get (confirmationLink);
+            type (By.name ("realname"), "realname");
+            type (By.name ("password"), password);
+            type (By.name ("password_confirm"), password);
+            click (By.cssSelector ("span[class='bigger-110']"));
+
     }
 }

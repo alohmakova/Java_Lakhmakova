@@ -7,33 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DbConnectionTest {
-    /*@Test
-    public void testDbConnection(){
+    @Test
+    public void testEmail(){
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbook?" + "user=root&password=");
+            conn = DriverManager.getConnection ("jdbc:mysql://localhost:3306/bugtracker?" + "user=root&password=");
             Statement st = conn.createStatement ();
-            ResultSet rs = st.executeQuery ("Select id, firstname, lastname, address from addressbook where modified = (Select MAX(modified) from addressbook)");
-            Contacts contacts = new Contacts ();
-            while (rs.next()) {
-                contacts.add (new ContactData ().withId (rs.getInt ("id"))
-                                .withFirstName (rs.getString ("firstname"))
-                                .withLastName (rs.getString ("lastname"))
-                                .withAddress (rs.getString ("address")));
+            ResultSet rs = st.executeQuery ("SELECT email FROM mantis_user_table WHERE id = 4");
+            List<String> emailList = new ArrayList<> ();
+            while (rs.next ()) {
+                String email = rs.getString ("email");
+                emailList.add (email);
             }
             rs.close ();
             st.close ();
             conn.close ();
-            System.out.println (contacts);
+            String email = String.join(",", emailList);
+            System.out.println (email);
 
-
-           } catch (SQLException ex) {
+        } catch (SQLException ex) {
             // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            System.out.println ("SQLException: " + ex.getMessage ());
+            System.out.println ("SQLState: " + ex.getSQLState ());
+            System.out.println ("VendorError: " + ex.getErrorCode ());
         }
-    }*/
+    }
+
     @Test
     public void Test(){
         Connection conn = null;
