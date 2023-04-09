@@ -29,10 +29,19 @@
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/../sandbox" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/../sandbox" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../soap-sample" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../soap-sample" />
           </set>
         </option>
       </GradleProjectSettings>

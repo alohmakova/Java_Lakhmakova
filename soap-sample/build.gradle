@@ -1,0 +1,36 @@
+//apply plugin: 'java'
+//
+//
+//repositories {
+//    mavenCentral()
+//}
+//
+//dependencies {
+//    implementation 'org.testng:testng:6.9.10'
+//}
+
+buildscript{
+    repositories{
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.yupzip:wsdl2java:2.3.2'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.yupzip.wsdl2java'
+
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation 'org.testng:testng:7.6.1'
+
+}
+
+wsdl2java {
+    wsdlDir = file("src/main/resources")
+    wsdlsToGenerate = [['src/main/resources/ipservice.wsdl']]
+}
