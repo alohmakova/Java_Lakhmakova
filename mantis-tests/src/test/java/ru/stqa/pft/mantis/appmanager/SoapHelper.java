@@ -29,11 +29,10 @@ public class SoapHelper {
                 .map((p) -> new Project ().withId (p.getId().intValue ()).withName (p.getName())).collect (Collectors.toSet ());
     }
 
-    public Set<Issue> getIssues() throws RemoteException, MalformedURLException, ServiceException {
+    public IssueData getIssue(int issueId) throws RemoteException, MalformedURLException, ServiceException {
         MantisConnectPortType mc = getMantisConnect ();
-        IssueData issues = mc.mc_issue_get ("administrator", "root", BigInteger.valueOf (0000007));
-        return Arrays.asList (issues).stream ()
-                .map((i) -> new Issue ().withStatus (i.getStatus ())).collect (Collectors.toSet ());
+        IssueData issue = mc.mc_issue_get ("administrator", "root", BigInteger.valueOf (issueId));
+        return issue;
     }
 
     private static MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {

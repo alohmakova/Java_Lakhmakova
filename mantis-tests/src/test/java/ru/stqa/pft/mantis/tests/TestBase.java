@@ -1,12 +1,25 @@
 package ru.stqa.pft.mantis.tests;
 
+import biz.futureware.mantis.rpc.soap.client.IssueData;
+import biz.futureware.mantis.rpc.soap.client.MantisConnectLocator;
+import biz.futureware.mantis.rpc.soap.client.MantisConnectPortType;
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
+import ru.stqa.pft.mantis.model.Issue;
 
+import javax.xml.rpc.ServiceException;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class TestBase {
 
@@ -24,6 +37,29 @@ public class TestBase {
         app.ftp ().restore ("config_inc.php.back", "config_inc.php");
         app.stop();
     }
-    
-}
+
+    private static MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
+        MantisConnectPortType mc = new MantisConnectLocator ()
+                .getMantisConnectPort (new URL ("http://localhost/mantisbt-2.25.6/api/soap/mantisconnect.php"));
+        //wd.get(properties.getProperty ("web.baseUrl"));
+        return mc;
+    }
+    public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+        MantisConnectPortType mc = getMantisConnect ();
+        IssueData issues = mc.mc_issue_get ("administrator", "root", BigInteger.valueOf (issueId));
+        Arrays.asList (issues).stream ()
+                .map((i) -> new Issue ().withStatus (i.getStatus ())).collect (Collectors.toSet ());
+
+        String status = issues.getStatus ().getName ();
+        return Objects.equals (status, "closed");
+
+    }
+
+    public void skipIfNotFixed(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+        if (isIssueOpen(issueId)) {
+            throw new SkipException ("Ignored because of issue " + issueId);
+        }
+    }
+    }
+
 
