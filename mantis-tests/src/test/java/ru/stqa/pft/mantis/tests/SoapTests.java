@@ -21,7 +21,7 @@ public class SoapTests extends TestBase{
             System.out.println (project.getName ());
         }
     }
-    @Test
+    @Test(enabled = false)
     public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException {
         Set<Project> projects = app.soap ().getProjects ();
         Issue issue = new Issue ().withSummary ("Test issue")

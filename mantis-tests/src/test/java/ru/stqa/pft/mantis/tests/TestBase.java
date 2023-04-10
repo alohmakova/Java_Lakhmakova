@@ -40,8 +40,7 @@ public class TestBase {
 
     private static MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
         MantisConnectPortType mc = new MantisConnectLocator ()
-                .getMantisConnectPort (new URL ("http://localhost/mantisbt-2.25.6/api/soap/mantisconnect.php"));
-        //wd.get(properties.getProperty ("web.baseUrl"));
+                .getMantisConnectPort (new URL (app.getProperty ("mantisConnect.url")));
         return mc;
     }
     public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
