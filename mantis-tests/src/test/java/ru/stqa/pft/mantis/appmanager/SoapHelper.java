@@ -13,8 +13,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static java.lang.System.getProperty;
-
 public class SoapHelper {
 
 
@@ -29,6 +27,13 @@ public class SoapHelper {
         ProjectData[] projects = mc.mc_projects_get_user_accessible ("administrator", "root");
         return Arrays.asList (projects).stream ()
                 .map((p) -> new Project ().withId (p.getId().intValue ()).withName (p.getName())).collect (Collectors.toSet ());
+    }
+
+    public Set<Issue> getIssues() throws RemoteException, MalformedURLException, ServiceException {
+        MantisConnectPortType mc = getMantisConnect ();
+        IssueData issues = mc.mc_issue_get ("administrator", "root", BigInteger.valueOf (0000007));
+        return Arrays.asList (issues).stream ()
+                .map((i) -> new Issue ().withStatus (i.getStatus ())).collect (Collectors.toSet ());
     }
 
     private static MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
