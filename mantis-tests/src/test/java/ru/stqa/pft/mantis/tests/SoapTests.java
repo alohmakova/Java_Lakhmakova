@@ -30,12 +30,15 @@ public class SoapTests extends TestBase{
         assertEquals(issue.getSummary (), created.getSummary ());
     }
     @Test
-    public void testGetIssueStatus() throws MalformedURLException, ServiceException, RemoteException {
+    public void testGetIssueStatusAndResolution() throws MalformedURLException, ServiceException, RemoteException {
         IssueData issue = app.soap ().getIssue (0000007);
         String status = issue.getStatus ().getName();
+        String resolution = issue.getResolution ().getName();
         Integer statusId = issue.getStatus ().getId().intValue ();
+        Integer resolutionId = issue.getResolution ().getId().intValue ();
         System.out.println ("Статус баг-репорта " + status + ", ID статуса " + statusId);
-        System.out.println (isIssueOpen(0000007));
+        System.out.println ("Resolution баг-репорта " + resolution + ", ID статуса " + resolutionId);
+        System.out.println ("Баг открыт? " + isIssueOpen(0000007));
     }
 }
 

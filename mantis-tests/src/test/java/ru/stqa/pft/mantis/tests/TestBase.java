@@ -40,17 +40,27 @@ public class TestBase {
 
     private static MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
         MantisConnectPortType mc = new MantisConnectLocator ()
-                .getMantisConnectPort (new URL (app.getProperty ("mantisConnect.url")));
+                .getMantisConnectPort (new URL (app.getProperty ("soap.url")));
         return mc;
     }
-    public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+    public boolean isIssueStatusClosed(int issueId) throws MalformedURLException, ServiceException, RemoteException {
         MantisConnectPortType mc = getMantisConnect ();
-        IssueData issues = mc.mc_issue_get ("administrator", "root", BigInteger.valueOf (issueId));
+        IssueData issues = mc.mc_issue_get (app.getProperty("soap.login"), app.getProperty("soap.password"), BigInteger.valueOf (issueId));
         Arrays.asList (issues).stream ()
                 .map((i) -> new Issue ().withStatus (i.getStatus ())).collect (Collectors.toSet ());
 
         String status = issues.getStatus ().getName ();
         return Objects.equals (status, "closed");
+
+    }
+    public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+        MantisConnectPortType mc = getMantisConnect ();
+        IssueData issues = mc.mc_issue_get (app.getProperty("soap.login"), app.getProperty("soap.password"), BigInteger.valueOf (issueId));
+        Arrays.asList (issues).stream ()
+                .map((i) -> new Issue ().withResolution (i.getResolution ())).collect (Collectors.toSet ());
+
+        String resolution = issues.getResolution ().getName ();
+        return Objects.equals (resolution, "open");
 
     }
 

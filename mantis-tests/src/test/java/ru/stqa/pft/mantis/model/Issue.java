@@ -7,8 +7,17 @@ public class Issue {
     private String summary;
     private String description;
     private Project project;
-
     private ObjectRef status;
+    private ObjectRef resolution;
+    public ObjectRef getResolution() {
+        return resolution;
+    }
+    public Issue withResolution(ObjectRef resolution) {
+        this.resolution = resolution;
+        return this;
+    }
+
+
     public ObjectRef getStatus() {
         return status;
     }
