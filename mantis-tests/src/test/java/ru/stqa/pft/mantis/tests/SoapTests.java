@@ -15,14 +15,16 @@ import static org.testng.AssertJUnit.assertEquals;
 public class SoapTests extends TestBase{
     @Test
     public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
+        skipIfNotFixed(24);
         Set<Project> projects = app.soap ().getProjects ();
         System.out.println (projects.size ());
         for (Project project :  projects) {
             System.out.println (project.getName ());
         }
     }
-    @Test(enabled = false)
+    @Test
     public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException {
+        skipIfNotFixed(22);
         Set<Project> projects = app.soap ().getProjects ();
         Issue issue = new Issue ().withSummary ("Test issue")
                 .withDescription ("Test issue description").withProject (projects.iterator ().next ());
@@ -31,14 +33,15 @@ public class SoapTests extends TestBase{
     }
     @Test
     public void testGetIssueStatusAndResolution() throws MalformedURLException, ServiceException, RemoteException {
-        IssueData issue = app.soap ().getIssue (0000007);
+        skipIfNotFixed(24);
+        IssueData issue = app.soap ().getIssue (24);
         String status = issue.getStatus ().getName();
         String resolution = issue.getResolution ().getName();
         Integer statusId = issue.getStatus ().getId().intValue ();
         Integer resolutionId = issue.getResolution ().getId().intValue ();
         System.out.println ("Статус баг-репорта " + status + ", ID статуса " + statusId);
         System.out.println ("Resolution баг-репорта " + resolution + ", ID статуса " + resolutionId);
-        System.out.println ("Баг открыт? " + isIssueOpen(0000007));
+        System.out.println ("Баг открыт? " + isIssueOpen(24));
     }
 }
 
