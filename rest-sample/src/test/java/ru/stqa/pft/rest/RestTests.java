@@ -46,4 +46,16 @@ return Executor.newInstance().auth("b31e382ca8445202e66b03aaf31508a3", "");
         return parsed.getAsJsonObject ().get ("issue_id").getAsInt();
 
     }
+    @Test
+    public void getIssueStateName() throws IOException {
+        String stateName = getIssueWithId(84).getStateName ();
+        System.out.println (stateName);
+    }
+    private Issue getIssueWithId(int issue_id) throws IOException {
+        String json = getExecutor().execute (Request.Get ("https://bugify.stqa.ru/api/issues/" + issue_id + ".json?")).returnContent ().asString ();
+        JsonElement parsed = new JsonParser ().parse (json);
+        JsonElement issue = parsed.getAsJsonObject ().get ("issues");
+        Set<Issue> issues = new Gson().fromJson(issue, new TypeToken<Set<Issue>>() {}.getType());
+        return issues.iterator().next();
+    }
 }
