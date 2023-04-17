@@ -52,7 +52,7 @@ public class ApplicationManager {
         } else {
             DesiredCapabilities capabilities = new DesiredCapabilities ();
             capabilities.setBrowserName (browser);
-            capabilities.setPlatform (Platform.fromString (System.getProperty ("platform", "Windows 11")));
+            capabilities.setPlatform (Platform.fromString (System.getProperty ("platform", "WIN11")));
             wd = new RemoteWebDriver (new URL (properties.getProperty ("selenium.server")), capabilities);
         }
         wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
