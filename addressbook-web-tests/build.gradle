@@ -32,6 +32,7 @@ dependencies {
     implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.13.4'
     runtimeOnly 'org.aspectj:aspectjweaver:1.9.19'
     implementation group: 'io.qameta.allure', name: 'allure-java-commons', version: '2.20.1'
+    implementation 'org.robotframework:robotframework:4.1.2'
 }
 
 task testGroups(type: Test) {
@@ -69,4 +70,9 @@ task testContacts(type: Test) {
         systemProperty 'verifyUI', "${verifyUI}"
     }
 }
-
+task rf(type: JavaExec) {
+    main = 'org.robotframework.RobotFramework'
+    classpath = sourceSets.test.runtimeClasspath
+    args '--outputdir', 'build/rf-report'
+    args 'src/test/resources/rf'
+}

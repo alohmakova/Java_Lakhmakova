@@ -66,7 +66,8 @@ public class ContactHelper extends HelperBase {
         wd.findElements (By.name ("selected[]")).get (index).click ();
     }
     public void selectContactById(int id) {
-        wd.findElement(By.cssSelector ("input[value='" + id + "']")).click (); //здесь должен искаться 1 элемент - обрати внимание!
+        wd.findElement(By.cssSelector ("input[value='" + id + "']")).click ();
+        //wd.findElement(By.cssSelector ("input[value='" + id + "']")).click ();//здесь должен искаться 1 элемент - обрати внимание! String.format("group page \"%s\"", groupName
     }
 
     public WebElement deleteContact() {
