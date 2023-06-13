@@ -9,20 +9,6 @@
     "email": "0email@mail.com",
     "email2": "0email2@mail.com",
     "email3": "0email3@mail.com",
-    "photo": "src\\test\\resources\\2023-02-27_12-49-38.png",
-    "group": "test 0"
-  },
-  {
-    "firstName": "Василина",
-    "lastName": "Веселова",
-    "address": "Address 0",
-    "telMobile": "2220222",
-    "telHome": "1110111",
-    "telWork": "3330333",
-    "email": "0email@mail.com",
-    "email2": "0email2@mail.com",
-    "email3": "0email3@mail.com",
-    "photo": "src\\test\\resources\\2023-02-27_12-49-38.png",
-    "group": "test 0"
+    "photo": "src\\test\\resources\\2023-02-27_12-49-38.png"
   }
 ]
